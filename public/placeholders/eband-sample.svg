@@ -1,0 +1,48 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ebandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="elasticPattern" x="0" y="0" width="4" height="20" patternUnits="userSpaceOnUse">
+      <rect width="4" height="20" fill="#f0fdf4"/>
+      <line x1="2" y1="0" x2="2" y2="20" stroke="#dcfce7" stroke-width="1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#ebandGrad)" opacity="0.1"/>
+  
+  <!-- Elastic band stretched -->
+  <g>
+    <!-- Band in relaxed state -->
+    <rect x="50" y="120" width="120" height="20" rx="10" fill="url(#ebandGrad)" opacity="0.8"/>
+    <rect x="50" y="120" width="120" height="20" rx="10" fill="url(#elasticPattern)" opacity="0.3"/>
+    
+    <!-- Arrow showing stretch -->
+    <path d="M180 130 L 210 130" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+    
+    <!-- Band in stretched state -->
+    <rect x="230" y="120" width="140" height="20" rx="10" fill="url(#ebandGrad)" opacity="0.6"/>
+    <rect x="230" y="120" width="140" height="20" rx="10" fill="url(#elasticPattern)" opacity="0.2"/>
+  </g>
+  
+  <!-- Elastic properties visualization -->
+  <g>
+    <!-- Wavy lines showing elasticity -->
+    <path d="M60 180 Q 80 160, 100 180 Q 120 200, 140 180 Q 160 160, 180 180" stroke="url(#ebandGrad)" stroke-width="3" fill="none" opacity="0.7"/>
+    <path d="M240 180 Q 260 160, 280 180 Q 300 200, 320 180 Q 340 160, 360 180" stroke="url(#ebandGrad)" stroke-width="3" fill="none" opacity="0.7"/>
+  </g>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+  </defs>
+  
+  <!-- Product info -->
+  <rect x="20" y="240" width="200" height="40" rx="8" fill="#ffffff" opacity="0.9"/>
+  <text x="30" y="255" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">Dây đai thun Eband</text>
+  <text x="30" y="270" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Độ đàn hồi cao - Bền chắc</text>
+</svg>
