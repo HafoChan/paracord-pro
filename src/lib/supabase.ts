@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { ProductSpecifications } from '@/types';
 
 // These would be set via environment variables in production
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -16,7 +17,7 @@ export type Database = {
           name: string;
           category: string;
           description: string;
-          specifications: Record<string, any>;
+          specifications: ProductSpecifications;
           price_range: string;
           images: string[];
           video_url: string | null;

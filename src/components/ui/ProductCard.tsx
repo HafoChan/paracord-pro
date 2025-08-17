@@ -1,24 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Eye, Phone, ShoppingCart, Star, Heart, Share2 } from "lucide-react";
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./Card";
 import { Button } from "./Button";
 import { Badge } from "./Badge";
 import { COMPANY_INFO } from "@/lib/constants";
-
-interface Product {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  specifications: Record<string, any>;
-  priceRange: string;
-  colors: string[];
-  images: string[];
-  isFeatured: boolean;
-}
+import { Product } from "@/types";
 
 interface ProductCardProps {
   product: Product;
@@ -70,18 +60,17 @@ export function ProductCard({
   if (viewMode === "list") {
     return (
       <Card 
-        className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 bg-gradient-to-r from-white to-slate-50/50 hover:from-white hover:to-blue-50/30 hover:-translate-y-1"
+        className="group overflow-hidden hover:shadow-xl transition-all duration-300 border border-slate-100 bg-white hover:bg-blue-50/10 min-h-[200px] flex flex-col sm:flex-row"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="flex flex-col sm:flex-row relative">
-          {/* Enhanced Product image */}
-          <div className="relative sm:w-48 h-48 sm:h-32 bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden">
+        <div className="relative sm:w-64 h-48 sm:h-auto bg-slate-50 overflow-hidden flex-shrink-0">
             {product.images && product.images[0] ? (
-              <img
+              <Image
                 src={product.images[0]}
                 alt={product.name}
-                className={`w-full h-full object-cover transition-all duration-700 ${
+                fill
+                className={`object-cover transition-all duration-700 ${
                   isHovered ? 'scale-110' : 'scale-100'
                 }`}
                 onLoad={() => setIsImageLoading(false)}
@@ -94,54 +83,6 @@ export function ProductCard({
                 </div>
               </div>
             )}
-            
-            {/* Enhanced hover overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent transition-all duration-300 ${
-              isHovered ? 'opacity-100' : 'opacity-0'
-            }`}>
-              <div className="absolute bottom-2 left-2 right-2 flex justify-between items-end">
-                <div className="flex gap-1">
-                  {product.colors.slice(0, 3).map((colorId, index) => {
-                    const color = colorMap[colorId as keyof typeof colorMap];
-                    return color ? (
-                      <button
-                        key={colorId}
-                        onClick={() => setSelectedColorIndex(index)}
-                        className={`w-6 h-6 rounded-full border-2 transition-all duration-300 ${
-                          selectedColorIndex === index ? 'border-white scale-110' : 'border-white/50 hover:border-white'
-                        }`}
-                        style={{ backgroundColor: color.hex }}
-                        title={color.name}
-                      />
-                    ) : null;
-                  })}
-                </div>
-                
-                <div className="flex gap-2">
-                  {showFavorite && (
-                    <button
-                      onClick={handleFavorite}
-                      className={`w-8 h-8 rounded-full backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
-                        isFavorited 
-                          ? 'bg-red-500 text-white' 
-                          : 'bg-white/80 text-slate-600 hover:bg-white hover:text-red-500'
-                      }`}
-                    >
-                      <Heart className={`w-4 h-4 ${isFavorited ? 'fill-current' : ''}`} />
-                    </button>
-                  )}
-                  {showShare && (
-                    <button
-                      onClick={handleShare}
-                      className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm text-slate-600 hover:bg-white hover:text-blue-500 flex items-center justify-center transition-all duration-300"
-                    >
-                      <Share2 className="w-4 h-4" />
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-            
             {/* Loading shimmer */}
             {isImageLoading && (
               <div className="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 animate-shimmer"></div>
@@ -149,7 +90,7 @@ export function ProductCard({
           </div>
 
           {/* Enhanced Product info */}
-          <div className="flex-1 p-6 relative">
+          <div className="flex-1 p-4 relative flex flex-col">
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-3">
@@ -159,34 +100,15 @@ export function ProductCard({
                   >
                     {categoryLabels[product.category as keyof typeof categoryLabels]}
                   </Badge>
-                  {product.isFeatured && (
-                    <Badge 
-                      className="text-xs bg-gradient-to-r from-amber-400 to-amber-500 text-white shadow-md animate-pulse"
-                    >
-                      ⭐ Nổi bật
-                    </Badge>
-                  )}
-                  
-                  {/* Quality indicator */}
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-3 h-3 ${
-                          i < 4 ? 'text-yellow-400 fill-current' : 'text-slate-300'
-                        } transition-colors duration-300`}
-                      />
-                    ))}
-                  </div>
                 </div>
                 
-                <h3 className={`font-bold text-slate-900 mb-3 transition-all duration-300 ${
+                <h3 className={`font-bold text-slate-900 mb-2 transition-all duration-300 ${
                   isHovered ? 'text-blue-600 text-xl' : 'text-lg'
                 }`}>
                   {product.name}
                 </h3>
                 
-                <p className={`text-slate-600 mb-4 leading-relaxed transition-all duration-300 ${
+                <p className={`text-slate-600 mb-2 line-clamp-2 transition-all duration-300 ${
                   isHovered ? 'text-slate-700' : ''
                 }`}>
                   {product.description}
@@ -194,7 +116,7 @@ export function ProductCard({
 
                 {/* Enhanced Colors */}
                 {product.colors.length > 0 && (
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2 mb-2">
                     <span className="text-sm font-medium text-slate-700">Màu sắc:</span>
                     <div className="flex gap-2">
                       {product.colors.slice(0, 4).map((colorId, index) => {
@@ -225,7 +147,7 @@ export function ProductCard({
                 )}
 
                 {/* Specifications preview */}
-                <div className="space-y-2 mb-4">
+                <div className="space-y-1 mb-2">
                   {Object.entries(product.specifications).slice(0, 2).map(([key, value]) => (
                     <div key={key} className="flex items-center justify-between text-sm">
                       <span className="text-slate-600 capitalize font-medium">{key}:</span>
@@ -236,8 +158,8 @@ export function ProductCard({
               </div>
 
               {/* Enhanced Price and actions */}
-              <div className="text-right ml-6 min-w-[180px]">
-                <div className="mb-4">
+              <div className="text-right ml-4 min-w-[140px] flex flex-col justify-between">
+                <div className="mb-3">
                   <p className={`font-bold transition-all duration-300 ${
                     isHovered ? 'text-blue-600 text-xl' : 'text-slate-900 text-lg'
                   }`}>
@@ -246,7 +168,7 @@ export function ProductCard({
                   <p className="text-xs text-slate-500 mt-1">Giá đã bao gồm VAT</p>
                 </div>
                 
-                <div className="space-y-3">
+                <div className="space-y-2 mt-auto">
                   <Button 
                     size="sm" 
                     className="w-full group relative bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"
@@ -262,56 +184,33 @@ export function ProductCard({
                   <Button 
                     size="sm" 
                     variant="outline" 
-                    className="w-full border-2 border-slate-300 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 hover:scale-105 group"
-                    asChild
-                  >
-                    <a href={`tel:${COMPANY_INFO.phone}`} className="flex items-center justify-center gap-2">
-                      <Phone className="h-4 w-4 group-hover:animate-bounce" />
-                      <span>Liên hệ</span>
-                    </a>
-                  </Button>
-                  
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
                     className="w-full border-2 border-green-300 hover:border-green-400 hover:bg-green-50 hover:text-green-600 transition-all duration-300 hover:scale-105 group"
                   >
                     <ShoppingCart className="h-4 w-4 mr-2 group-hover:animate-bounce" />
                     <span>Thêm giỏ hàng</span>
                   </Button>
                 </div>
-                
-                {/* Quick stats */}
-                <div className="mt-4 pt-4 border-t border-slate-200">
-                  <div className="flex items-center justify-between text-xs text-slate-500">
-                    <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>Còn hàng</span>
-                    </div>
-                    <span>⚡ Giao nhanh</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Card>
+        </Card>
     );
   }
 
   return (
     <Card 
-      className="group overflow-hidden bg-gradient-to-br from-white to-slate-50/50 border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:scale-105 card-interactive rounded-3xl"
+      className="group overflow-hidden bg-white border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 min-h-[500px] flex flex-col rounded-2xl"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Enhanced Product image */}
-      <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 relative overflow-hidden rounded-t-3xl">
+      <div className="aspect-square bg-slate-50 relative overflow-hidden rounded-t-2xl">
         {product.images && product.images[0] ? (
-          <img
+          <Image
             src={product.images[0]}
             alt={product.name}
-            className={`w-full h-full object-cover transition-all duration-700 ${
+            fill
+            className={`object-cover transition-all duration-700 ${
               isHovered ? 'scale-110 rotate-1' : 'scale-100'
             }`}
             onLoad={() => setIsImageLoading(false)}
@@ -327,54 +226,10 @@ export function ProductCard({
           </div>
         )}
         
-        {/* Enhanced featured badge */}
-        {product.isFeatured && (
-          <Badge className="absolute top-3 left-3 bg-gradient-to-r from-amber-400 to-amber-500 text-white shadow-lg animate-pulse border-0 text-xs">
-            ⭐ Nổi bật
-          </Badge>
-        )}
-        
         {/* Interactive action buttons overlay */}
         <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-all duration-300 ${
           isHovered ? 'opacity-100' : 'opacity-0'
         }`}>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex gap-3">
-              <Button 
-                size="sm" 
-                className="bg-white/90 backdrop-blur-sm text-slate-700 hover:bg-white hover:text-blue-600 transition-all duration-300 hover:scale-110 shadow-lg"
-                asChild
-              >
-                <Link href={`/products/${product.id}`}>
-                  <Eye className="h-4 w-4" />
-                </Link>
-              </Button>
-              
-              {showFavorite && (
-                <Button
-                  size="sm"
-                  onClick={handleFavorite}
-                  className={`backdrop-blur-sm transition-all duration-300 hover:scale-110 shadow-lg ${
-                    isFavorited 
-                      ? 'bg-red-500 text-white hover:bg-red-600' 
-                      : 'bg-white/90 text-slate-700 hover:bg-white hover:text-red-500'
-                  }`}
-                >
-                  <Heart className={`h-4 w-4 ${isFavorited ? 'fill-current' : ''}`} />
-                </Button>
-              )}
-              
-              {showShare && (
-                <Button
-                  size="sm"
-                  onClick={handleShare}
-                  className="bg-white/90 backdrop-blur-sm text-slate-700 hover:bg-white hover:text-blue-600 transition-all duration-300 hover:scale-110 shadow-lg"
-                >
-                  <Share2 className="h-4 w-4" />
-                </Button>
-              )}
-            </div>
-          </div>
           
           {/* Quick add to cart */}
           <div className="absolute bottom-4 left-4 right-4">
@@ -391,37 +246,13 @@ export function ProductCard({
           </div>
         </div>
         
-        {/* Color picker overlay */}
-        {product.colors.length > 0 && (
-          <div className={`absolute top-4 right-4 flex flex-col gap-2 transition-all duration-300 ${
-            isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
-          }`}>
-            {product.colors.slice(0, 3).map((colorId, index) => {
-              const color = colorMap[colorId as keyof typeof colorMap];
-              return color ? (
-                <button
-                  key={colorId}
-                  onClick={() => setSelectedColorIndex(index)}
-                  className={`w-8 h-8 rounded-full border-3 backdrop-blur-sm transition-all duration-300 hover:scale-125 ${
-                    selectedColorIndex === index 
-                      ? 'border-white shadow-xl' 
-                      : 'border-white/60 hover:border-white'
-                  }`}
-                  style={{ backgroundColor: color.hex }}
-                  title={color.name}
-                />
-              ) : null;
-            })}
-          </div>
-        )}
-        
         {/* Loading shimmer */}
         {isImageLoading && (
           <div className="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 animate-shimmer"></div>
         )}
       </div>
 
-      <CardHeader className="pb-4 px-6">
+      <CardHeader className="pb-2 px-4">
         <div className="flex items-center justify-between mb-3">
           <Badge 
             variant="secondary" 
@@ -429,20 +260,6 @@ export function ProductCard({
           >
             {categoryLabels[product.category as keyof typeof categoryLabels]}
           </Badge>
-          
-          {/* Quality rating */}
-          <div className="flex items-center gap-1">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className={`w-3 h-3 transition-all duration-300 ${
-                  i < 4 
-                    ? 'text-yellow-400 fill-current hover:scale-125' 
-                    : 'text-slate-300'
-                }`}
-              />
-            ))}
-          </div>
         </div>
         
         <CardTitle className={`leading-tight mb-2 transition-all duration-300 ${
@@ -451,17 +268,17 @@ export function ProductCard({
           {product.name}
         </CardTitle>
         
-        <CardDescription className={`text-sm leading-relaxed transition-all duration-300 ${
+        <CardDescription className={`text-sm line-clamp-3 transition-all duration-300 ${
           isHovered ? 'text-slate-700' : 'text-slate-600'
         }`}>
           {product.description}
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="pt-0 px-6">
+      <CardContent className="pt-0 px-4">
         {/* Enhanced Colors */}
         {product.colors.length > 0 && (
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-2 mb-3">
             <span className="text-sm font-medium text-slate-700">Màu:</span>
             <div className="flex gap-2">
               {product.colors.slice(0, 3).map((colorId, index) => {
@@ -490,7 +307,7 @@ export function ProductCard({
         )}
 
         {/* Enhanced Key specs */}
-        <div className="space-y-3 mb-4">
+        <div className="space-y-2 mb-3">
           {Object.entries(product.specifications).slice(0, 2).map(([key, value]) => (
             <div key={key} className="flex items-center justify-between text-sm group/spec">
               <span className="text-slate-600 capitalize font-medium group-hover/spec:text-slate-800 transition-colors">
@@ -504,19 +321,13 @@ export function ProductCard({
         </div>
 
         {/* Enhanced Price and actions */}
-        <div className="pt-4 border-t border-slate-100">
+        <div className="pt-3 border-t border-slate-100 mt-auto">
           <div className="flex items-center justify-between mb-4">
             <p className={`font-bold transition-all duration-300 ${
               isHovered ? 'text-blue-600 text-lg' : 'text-slate-900'
             }`}>
               {product.priceRange}
             </p>
-            <div className="text-xs text-slate-500">
-              <div className="flex items-center gap-1">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span>Còn hàng</span>
-              </div>
-            </div>
           </div>
           
           <div className="space-y-2">
@@ -531,29 +342,6 @@ export function ProductCard({
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </Link>
             </Button>
-            
-            <div className="flex gap-2">
-              <Button 
-                size="sm" 
-                variant="outline" 
-                className="flex-1 border-2 border-slate-300 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 hover:scale-105 group"
-                asChild
-              >
-                <a href={`tel:${COMPANY_INFO.phone}`} className="flex items-center justify-center gap-2">
-                  <Phone className="h-3 w-3 group-hover:animate-bounce" />
-                  <span>Gọi</span>
-                </a>
-              </Button>
-              
-              <Button 
-                size="sm" 
-                variant="outline" 
-                className="flex-1 border-2 border-green-300 hover:border-green-400 hover:bg-green-50 hover:text-green-600 transition-all duration-300 hover:scale-105 group"
-              >
-                <ShoppingCart className="h-3 w-3 mr-1 group-hover:animate-bounce" />
-                <span>Giỏ</span>
-              </Button>
-            </div>
           </div>
         </div>
       </CardContent>

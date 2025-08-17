@@ -5,7 +5,6 @@
 
 // Base paths
 const ASSETS_BASE = '/assets';
-const PRODUCTS_BASE = `${ASSETS_BASE}/products`;
 const FACTORY_BASE = `${ASSETS_BASE}/factory`;
 const SAMPLES_BASE = `${ASSETS_BASE}/samples`;
 

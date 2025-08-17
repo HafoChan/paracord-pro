@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import { 
-  SparklesIcon, 
   SwatchIcon, 
   BriefcaseIcon, 
   HeartIcon, 
@@ -11,12 +10,6 @@ import {
 import { Button } from "@/components/ui/Button";
 import { ParticleBackground } from "@/components/ui/ParticleBackground";
 import { COMPANY_INFO } from "@/lib/constants";
-
-// Define TypeScript interface for COMPANY_INFO (if using TypeScript)
-interface CompanyInfo {
-  description: string;
-  phone: string;
-}
 
 // Define industries constant for better maintainability
 const INDUSTRIES = [
