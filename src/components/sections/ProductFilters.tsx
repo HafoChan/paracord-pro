@@ -66,7 +66,7 @@ export function ProductFilters() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Filter className="h-5 w-5 text-slate-600" />
-          <h2 className="font-semibold text-slate-900">Bộ lọc</h2>
+          <h3 className="font-semibold text-slate-900">Bộ lọc</h3>
         </div>
         {hasActiveFilters && (
           <Button
@@ -84,7 +84,7 @@ export function ProductFilters() {
       {/* Category filter */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium">Danh mục sản phẩm</CardTitle>
+          <CardTitle className="text-sm font-medium">Danh mục</CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <div className="space-y-2">

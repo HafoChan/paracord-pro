@@ -3,23 +3,9 @@ import { Facebook, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
 import { COMPANY_INFO, NAVIGATION_ITEMS, SOCIAL_LINKS } from "@/lib/constants";
 
 // Define TypeScript interfaces (if using TypeScript)
-interface CompanyInfo {
-  name: string;
-  slogan: string;
-  description: string;
-  phone: string;
-  email: string;
-  address: string;
-}
-
 interface NavigationItem {
   name: string;
   href: string;
-}
-
-interface SocialLinks {
-  facebook: string;
-  zalo: string;
 }
 
 // Constants for maintainability
@@ -39,7 +25,7 @@ export function Footer() {
           aria-hidden="true"
         />
 
-        <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-8 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-2 animate-fade-in-up">

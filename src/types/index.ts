@@ -1,11 +1,31 @@
+// Product specification types
+export interface ProductSpecifications {
+  diameter?: string;
+  width?: string;
+  length?: string;
+  material?: string;
+  elasticity?: string;
+  colors?: string;
+  processing?: string;
+  quantity?: string;
+  delivery?: string;
+  [key: string]: string | undefined;
+}
+
+// Settings value types
+export interface SettingValue {
+  [key: string]: string | number | boolean | null;
+}
+
 // Product types
 export interface Product {
   id: string;
   name: string;
   category: "paracord" | "eband" | "service";
   description: string;
-  specifications: Record<string, any>;
+  specifications: ProductSpecifications;
   priceRange: string;
+  colors: string[];
   images: string[];
   videoUrl?: string;
   isFeatured: boolean;
@@ -42,7 +62,7 @@ export interface Contact extends ContactForm {
 export interface Setting {
   id: string;
   key: string;
-  value: Record<string, any>;
+  value: SettingValue;
   updatedAt: string;
 }
 

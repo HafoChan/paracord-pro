@@ -6,9 +6,10 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { ProductCard } from "../ui/ProductCard";
 import { SPECIFIC_PRODUCT_IMAGES } from "@/lib/images";
+import { Product } from "@/types";
 
 // Mock product data
-const products = [
+const products: Product[] = [
   {
     id: "1",
     name: "Dây dù bản tròn màu đen",
@@ -22,7 +23,9 @@ const products = [
     priceRange: "50,000 - 80,000 VNĐ/m",
     colors: ["black"],
     images: [SPECIFIC_PRODUCT_IMAGES.paracord_black.main],
-    isFeatured: true
+    isFeatured: true,
+    createdAt: "2024-01-01T00:00:00Z",
+    updatedAt: "2024-01-01T00:00:00Z"
   },
   {
     id: "2", 
@@ -37,7 +40,9 @@ const products = [
     priceRange: "80,000 - 120,000 VNĐ/m",
     colors: ["black", "white", "blue"],
     images: [SPECIFIC_PRODUCT_IMAGES.eband_multi.main],
-    isFeatured: true
+    isFeatured: true,
+    createdAt: "2024-01-01T00:00:00Z",
+    updatedAt: "2024-01-01T00:00:00Z"
   },
   {
     id: "3",
@@ -52,7 +57,9 @@ const products = [
     priceRange: "60,000 - 90,000 VNĐ/m",
     colors: ["red", "orange"],
     images: [SPECIFIC_PRODUCT_IMAGES.paracord_colorful.main],
-    isFeatured: false
+    isFeatured: false,
+    createdAt: "2024-01-01T00:00:00Z",
+    updatedAt: "2024-01-01T00:00:00Z"
   },
   {
     id: "4",
@@ -67,7 +74,9 @@ const products = [
     priceRange: "5,000 - 15,000 VNĐ/chiếc",
     colors: [],
     images: [SPECIFIC_PRODUCT_IMAGES.service_tip.main],
-    isFeatured: false
+    isFeatured: false,
+    createdAt: "2024-01-01T00:00:00Z",
+    updatedAt: "2024-01-01T00:00:00Z"
   },
   {
     id: "5",
@@ -82,7 +91,9 @@ const products = [
     priceRange: "70,000 - 100,000 VNĐ/m",
     colors: ["white"],
     images: [SPECIFIC_PRODUCT_IMAGES.eband_white.main],
-    isFeatured: false
+    isFeatured: false,
+    createdAt: "2024-01-01T00:00:00Z",
+    updatedAt: "2024-01-01T00:00:00Z"
   },
   {
     id: "6",
@@ -97,7 +108,9 @@ const products = [
     priceRange: "45,000 - 75,000 VNĐ/m",
     colors: ["red", "blue", "green", "yellow", "pink"],
     images: [SPECIFIC_PRODUCT_IMAGES.paracord_rainbow.main],
-    isFeatured: true
+    isFeatured: true,
+    createdAt: "2024-01-01T00:00:00Z",
+    updatedAt: "2024-01-01T00:00:00Z"
   }
 ];
 
@@ -113,7 +126,7 @@ export function ProductGrid() {
   const [sortBy, setSortBy] = useState("featured");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showSortOptions, setShowSortOptions] = useState(false);
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [, setFavorites] = useState<string[]>([]);
 
   const handleFavorite = (productId: string) => {
     setFavorites(prev => 
@@ -123,7 +136,7 @@ export function ProductGrid() {
     );
   };
 
-  const handleShare = (product: any) => {
+  const handleShare = (product: Product) => {
     if (navigator.share) {
       navigator.share({
         title: product.name,
@@ -157,9 +170,9 @@ export function ProductGrid() {
   return (
     <div className="space-y-6">
       {/* Search and controls */}
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
         {/* Search */}
-        <div className="relative flex-1 max-w-md">
+        <div className="relative flex-1 max-w-xs">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
           <Input
             placeholder="Tìm kiếm sản phẩm..."
@@ -170,12 +183,12 @@ export function ProductGrid() {
         </div>
 
         {/* View and sort controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           {/* Enhanced View mode toggle */}
-          <div className="flex border-2 border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm">
+          <div className="flex border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
             <Button
               variant={viewMode === "grid" ? "default" : "ghost"}
-              size="sm"
+              size="icon"
               onClick={() => setViewMode("grid")}
               className={`rounded-none transition-all duration-300 ${
                 viewMode === "grid" 
@@ -187,7 +200,7 @@ export function ProductGrid() {
             </Button>
             <Button
               variant={viewMode === "list" ? "default" : "ghost"}
-              size="sm"
+              size="icon"
               onClick={() => setViewMode("list")}
               className={`rounded-none transition-all duration-300 ${
                 viewMode === "list" 
@@ -215,7 +228,7 @@ export function ProductGrid() {
             </Button>
 
             {showSortOptions && (
-              <div className="absolute right-0 top-full mt-2 w-48 bg-white border-2 border-slate-200 rounded-xl shadow-xl z-10 overflow-hidden animate-fade-in-up">
+              <div className="absolute right-0 top-full mt-1 w-40 bg-white border border-slate-200 rounded-lg shadow-md z-10 overflow-hidden animate-fade-in-up">
                 {sortOptions.map((option, index) => (
                   <button
                     key={option.value}

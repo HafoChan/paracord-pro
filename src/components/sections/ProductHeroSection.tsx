@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Phone, ChevronLeft, ChevronRight, PaletteIcon, WrenchIcon, TruckIcon, SparklesIcon } from "lucide-react";
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/Button";
@@ -53,7 +54,7 @@ export function ProductHeroSection() {
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden">
+    <section className="bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden">
       {/* Enhanced background with parallax */}
       <div 
         className="absolute inset-0 opacity-10 transition-transform duration-1000 ease-out"
@@ -70,13 +71,13 @@ export function ProductHeroSection() {
       <div className="absolute top-40 right-32 w-24 h-24 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-lg rotate-45 blur-lg animate-float" style={{animationDelay: '2s'}}></div>
       <div className="absolute bottom-32 left-40 w-20 h-20 bg-gradient-to-br from-green-400/20 to-teal-500/20 rounded-full blur-lg animate-float" style={{animationDelay: '4s'}}></div>
       
-      <div className="container mx-auto px-4 py-4 lg:py-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[80vh]">
+      <div className="container mx-auto px-4 py-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
           {/* Left Side - Company Information */}
-          <div className="space-y-8 animate-fade-in-up">
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
+          <div className="space-y-6 animate-fade-in-up">
+            <div className="space-y-4">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
                 <span className="inline-block hover:scale-105 transition-transform duration-300">Sản xuất</span>{" "}
                 <span className="text-gradient-accent inline-block hover:scale-105 transition-transform duration-300 cursor-default">dây dù</span>{" "}
                 <span className="inline-block hover:scale-105 transition-transform duration-300">và</span>{" "}
@@ -84,7 +85,7 @@ export function ProductHeroSection() {
                 <span className="inline-block hover:scale-105 transition-transform duration-300">chất lượng cao</span>
               </h1>
               
-              <p className="text-xl text-slate-600 leading-relaxed max-w-lg animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+              <p className="text-lg text-slate-600 leading-relaxed max-w-lg animate-fade-in-up" style={{animationDelay: '0.2s'}}>
                 {COMPANY_INFO.description}. Phục vụ khách hàng trên toàn quốc với chất lượng uy tín.
               </p>
             </div>
@@ -107,45 +108,43 @@ export function ProductHeroSection() {
               ))}
             </div>
 
-            {/* Enhanced CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
+            {/* Compact CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
               <Button
-                size="lg"
+                size="default"
                 className="group relative bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white border-0 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden"
-                asChild
               >
                 <Link href="/products" className="flex items-center gap-2 relative z-10">
                   <span className="relative z-10">Xem sản phẩm</span>
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
                 </Link>
               </Button>
               
               <Button
-                size="lg"
+                size="default"
                 variant="outline"
                 className="group border-2 border-slate-300 text-slate-700 hover:bg-blue-50 hover:border-blue-400 hover:text-blue-700 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
-                asChild
               >
                 <Link
                   href={`tel:${COMPANY_INFO.phone}`}
                   className="flex items-center gap-2"
                 >
-                  <Phone className="h-5 w-5 group-hover:animate-pulse" />
+                  <Phone className="h-4 w-4 group-hover:animate-pulse" />
                   <span>Gọi ngay: {COMPANY_INFO.phone}</span>
                 </Link>
               </Button>
             </div>
 
-            {/* Enhanced Trust indicator */}
-            <div className="pt-6 border-t border-slate-200/50 animate-fade-in-up" style={{animationDelay: '1s'}}>
-              <p className="flex items-center gap-2 text-sm text-slate-500 mb-3 font-medium">
+            {/* Compact Trust indicator */}
+            <div className="pt-4 border-t border-slate-200/50 animate-fade-in-up" style={{animationDelay: '1s'}}>
+              <p className="flex items-center gap-2 text-sm text-slate-500 mb-2 font-medium">
                 <SparklesIcon className="h-4 w-4 text-yellow-500" />
                 Được tin tưởng bởi các doanh nghiệp</p>
               <div className="flex flex-wrap gap-2 text-xs">
                 {["Ngành may mặc", "Balo - túi xách", "Đồ thể thao", "Y tế - sức khỏe"].map((industry, index) => (
                   <span 
                     key={index}
-                    className="inline-flex items-center px-3 py-1 bg-slate-100 text-slate-600 rounded-full hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300 cursor-default"
+                    className="inline-flex items-center px-2 py-1 bg-slate-100 text-slate-600 rounded-full hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300 cursor-default"
                     style={{animationDelay: `${1.2 + index * 0.1}s`}}
                   >
                     {industry}
@@ -159,8 +158,8 @@ export function ProductHeroSection() {
           <div className="relative animate-fade-in-up" style={{animationDelay: '0.6s'}}>
             <div className="relative">
               
-              {/* Product Stack Preview */}
-              <div className="relative h-[520px]">
+              {/* Compact Product Stack Preview */}
+              <div className="relative h-[460px]">
                 {products.map((product, index) => (
                   <div
                     key={product.id}
@@ -176,12 +175,13 @@ export function ProductHeroSection() {
                   >
                     <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 h-full group hover:shadow-3xl transition-all duration-500">
                       
-                      {/* Product Image */}
-                      <div className="relative h-80 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
-                        <img
+                      {/* Compact Product Image */}
+                      <div className="relative h-72 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
+                        <Image
                           src={product.image}
                           alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         
                         {/* Category Badge */}
@@ -206,10 +206,10 @@ export function ProductHeroSection() {
                         </div>
                       </div>
                       
-                      {/* Product Info */}
-                      <div className="p-6 space-y-4">
+                      {/* Compact Product Info */}
+                      <div className="p-4 space-y-3">
                         <div>
-                          <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                          <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
                             {product.name}
                           </h3>
                           <p className="text-slate-600 text-sm leading-relaxed line-clamp-2">
@@ -217,12 +217,12 @@ export function ProductHeroSection() {
                           </p>
                         </div>
                         
-                        {/* Features */}
+                        {/* Compact Features */}
                         <div className="space-y-2">
                           {product.features.slice(0, 2).map((feature, featureIndex) => (
-                            <div key={featureIndex} className="flex items-center gap-3 text-sm text-slate-600">
-                              <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                            <div key={featureIndex} className="flex items-center gap-2 text-sm text-slate-600">
+                              <div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                               </div>
                               <span className="font-medium">{feature}</span>
                             </div>
@@ -234,63 +234,62 @@ export function ProductHeroSection() {
                 ))}
               </div>
               
-              {/* Modern Navigation */}
-              <div className="flex items-center justify-between mt-8">
-                {/* Product Thumbnails */}
-                <div className="flex items-center gap-5">
+              {/* Compact Navigation */}
+              <div className="flex items-center justify-between mt-6">
+                {/* Compact Product Thumbnails */}
+                <div className="flex items-center gap-3">
                   {products.map((product, index) => (
                     <button
-                    key={product.id}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`group relative transition-all duration-300 rounded-xl ${
-                      index === currentSlide 
-                        ? 'ring-2 ring-blue-500 ring-offset-2 scale-110' 
-                        : 'hover:ring-2 hover:ring-blue-300 hover:ring-offset-2 hover:scale-105'
-                    }`}
-                  >
-                    <div className="w-16 h-16 rounded-xl overflow-hidden bg-slate-100">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                    </div>
-                    {index === currentSlide && (
-                      <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                      key={product.id}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`group relative transition-all duration-300 rounded-xl ${
+                        index === currentSlide 
+                          ? 'ring-2 ring-blue-500 ring-offset-2 scale-110' 
+                          : 'hover:ring-2 hover:ring-blue-300 hover:ring-offset-2 hover:scale-105'
+                      }`}
+                    >
+                      <div className="w-12 h-12 rounded-xl overflow-hidden bg-slate-100">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className="object-cover rounded-xl group-hover:scale-100 transition-transform duration-300"
+                        />
                       </div>
-                    )}
-                  </button>
-                  
+                      {index === currentSlide && (
+                        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                        </div>
+                      )}
+                    </button>
                   ))}
                 </div>
                 
-                {/* Navigation Arrows */}
+                {/* Compact Navigation Arrows */}
                 <div className="flex items-center gap-2">
                   <button
                     onClick={prevSlide}
-                    className="group w-12 h-12 bg-slate-100 hover:bg-blue-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
+                    className="group w-10 h-10 bg-slate-100 hover:bg-blue-500 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
                   >
-                    <ChevronLeft className="h-5 w-5 text-slate-600 group-hover:text-white transition-colors duration-300" />
+                    <ChevronLeft className="h-4 w-4 text-slate-600 group-hover:text-white transition-colors duration-300" />
                   </button>
                   <button
                     onClick={nextSlide}
-                    className="group w-12 h-12 bg-slate-100 hover:bg-blue-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
+                    className="group w-10 h-10 bg-slate-100 hover:bg-blue-500 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg"
                   >
-                    <ChevronRight className="h-5 w-5 text-slate-600 group-hover:text-white transition-colors duration-300" />
+                    <ChevronRight className="h-4 w-4 text-slate-600 group-hover:text-white transition-colors duration-300" />
                   </button>
                 </div>
               </div>
               
-              {/* CTA Section */}
-              <div className="mt-8">
+              {/* Compact CTA Section */}
+              <div className="mt-6">
                 <Button 
-                  className="group w-full bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 text-white py-4 text-lg font-semibold shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden rounded-2xl"
-                  asChild
+                  className="group w-full bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 text-white py-3 font-semibold shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden rounded-2xl"
                 >
-                  <Link href="/products" className="flex items-center justify-center gap-3 relative z-10">
+                  <Link href="/products" className="flex items-center justify-center gap-2 relative z-10">
                     <span className="relative z-10 text-sm">Khám phá tất cả sản phẩm</span>
-                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
                   </Link>
                 </Button>
               </div>

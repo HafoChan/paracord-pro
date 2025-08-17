@@ -1,11 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { 
   PhoneIcon, 
   EnvelopeIcon, 
   ShareIcon, 
   HeartIcon,
-  StarIcon,
   CheckCircleIcon,
   TruckIcon,
   ShieldCheckIcon
@@ -47,7 +47,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-green-400/10 to-blue-400/10 rounded-full blur-3xl"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-slate-600 mb-8 animate-fade-in-up">
           <Link href="/" className="hover:text-slate-900 hover:text-gradient transition-all">Trang chủ</Link>
@@ -65,23 +65,25 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </Link>
         </Button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
           {/* Enhanced Product Images */}
-          <div className="space-y-4 animate-fade-in-up">
-            <div className="aspect-square bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl flex items-center justify-center shadow-soft hover:shadow-hover transition-all card-interactive group">
-              <img 
+          <div className="space-y-4 lg:sticky lg:top-24">
+            <div className="aspect-square bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow card-interactive group">
+              <Image 
                 src={product.images[0] || getProductImage(`${product.category}_${product.id}`, 'main') as string}
                 alt={product.name}
-                className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                fill
+                className="object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-4">
               {[...Array(3)].map((_, index) => (
-                <div key={index} className="aspect-square bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg flex items-center justify-center shadow-soft hover:shadow-hover transition-all cursor-pointer group">
-                  <img 
+                <div key={index} className="aspect-square bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl flex items-center justify-center shadow-md hover:shadow-lg transition-all cursor-pointer group">
+                  <Image 
                     src={getCategoryImage(product.category as 'paracord' | 'eband' | 'service')}
                     alt={`${product.name} - Ảnh ${index + 2}`}
-                    className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                    fill
+                    className="object-cover rounded-xl group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
               ))}
@@ -89,7 +91,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </div>
 
           {/* Product Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 lg:sticky lg:top-24">
             {/* Header */}
             <div>
               <div className="flex items-center gap-2 mb-3">
@@ -100,16 +102,16 @@ export function ProductDetail({ product }: ProductDetailProps) {
                   <Badge>Nổi bật</Badge>
                 )}
               </div>
-              <h1 className="text-3xl font-bold text-slate-900 mb-4">
+              <h3 className="text-3xl font-bold text-slate-900 mb-4">
                 {product.name}
-              </h1>
-              <p className="text-lg text-slate-600">
+              </h3>
+              <p className="text-md text-slate-600">
                 {product.description}
               </p>
             </div>
 
             {/* Price */}
-            <div className="border border-slate-200 rounded-lg p-4">
+            <div className="border border-slate-200 rounded-xl p-6 bg-white shadow-sm">
               <div className="text-sm text-slate-500 mb-1">Giá</div>
               <div className="text-2xl font-bold text-slate-900">
                 {product.priceRange}
@@ -120,7 +122,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             {/* Enhanced Actions */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <Button size="lg" className="w-full gradient-button hover:shadow-hover btn-magnetic group" asChild>
                 <a href={`tel:${COMPANY_INFO.phone}`} className="flex items-center">
                   <PhoneIcon className="h-5 w-5 mr-2 group-hover:animate-pulse" />
@@ -146,25 +148,25 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </div>
             
             {/* Trust badges */}
-            <div className="grid grid-cols-3 gap-3 pt-4 border-t border-slate-100">
-              <div className="text-center p-3 rounded-lg bg-green-50 hover:bg-green-100 transition-colors group">
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100">
+              <div className="text-center p-4 rounded-xl bg-green-50 hover:bg-green-100 transition-colors group">
                 <CheckCircleIcon className="h-6 w-6 text-green-600 mx-auto mb-1 group-hover:scale-110 transition-transform" />
                 <div className="text-xs font-medium text-green-700">Chất lượng</div>
               </div>
-              <div className="text-center p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors group">
+              <div className="text-center p-4 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors group">
                 <TruckIcon className="h-6 w-6 text-blue-600 mx-auto mb-1 group-hover:scale-110 transition-transform" />
                 <div className="text-xs font-medium text-blue-700">Giao nhanh</div>
               </div>
-              <div className="text-center p-3 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors group">
+              <div className="text-center p-4 rounded-xl bg-purple-50 hover:bg-purple-100 transition-colors group">
                 <ShieldCheckIcon className="h-6 w-6 text-purple-600 mx-auto mb-1 group-hover:scale-110 transition-transform" />
                 <div className="text-xs font-medium text-purple-700">Bảo hành</div>
               </div>
             </div>
 
             {/* Quick specs */}
-            <Card>
+            <Card className="shadow-sm rounded-xl">
               <CardHeader>
-                <CardTitle className="text-lg">Thông số nhanh</CardTitle>
+                <CardTitle className="text-md">Thông số nhanh</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-4">
@@ -181,10 +183,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
         </div>
 
         {/* Detailed Information */}
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Description */}
           <div className="lg:col-span-2 space-y-8">
-            <Card>
+            <Card className="shadow-sm rounded-xl">
               <CardHeader>
                 <CardTitle>Mô tả chi tiết</CardTitle>
               </CardHeader>
@@ -209,7 +211,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
           {/* Specifications */}
           <div>
-            <Card>
+            <Card className="shadow-sm rounded-xl">
               <CardHeader>
                 <CardTitle>Thông số kỹ thuật</CardTitle>
               </CardHeader>
@@ -226,7 +228,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </Card>
 
             {/* Contact card */}
-            <Card className="mt-6">
+            <Card className="mt-8 shadow-sm rounded-xl">
               <CardHeader>
                 <CardTitle className="text-lg">Cần tư vấn?</CardTitle>
               </CardHeader>

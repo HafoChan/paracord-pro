@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { PRODUCT_IMAGES } from "@/lib/images";
 
@@ -31,30 +32,30 @@ const categories = [
 
 export function QuickCategories() {
   return (
-    <section className="py-4 bg-gradient-to-br from-white to-slate-50/50 relative overflow-hidden">
+    <section className="py-6 bg-gradient-to-br from-white to-slate-50/50 relative overflow-hidden">
       {/* Enhanced background decorations */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-indigo-500/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-br from-purple-400/10 to-pink-500/10 rounded-full blur-2xl"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         
-        {/* Enhanced Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+        {/* Compact Section Header */}
+        <div className="text-center mb-10 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1.5 rounded-full text-sm font-medium mb-4">
+            <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
             Sản phẩm nổi bật
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
             <span className="text-gradient">Danh mục</span>{" "}
             <span className="text-gradient-accent">sản phẩm</span>
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Khám phá các sản phẩm chất lượng cao được nhiều khách hàng tin tưởng và lựa chọn hàng đầu
           </p>
         </div>
 
-        {/* Enhanced Categories Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Compact Categories Grid */}
+        <div className="grid md:grid-cols-3 gap-6">
           {categories.map((category, index) => (
             <div 
               key={category.id}
@@ -66,12 +67,13 @@ export function QuickCategories() {
                 #{index + 1}
               </div>
               
-              {/* Enhanced Category Image */}
-              <div className="relative h-56 overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/30">
-                <img
+              {/* Compact Category Image */}
+              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/30">
+                <Image
                   src={category.image}
                   alt={category.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
@@ -81,36 +83,36 @@ export function QuickCategories() {
                 </div>
               </div>
 
-              {/* Enhanced Category Content */}
-              <div className="p-8 relative">
-                <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-blue-900 transition-colors duration-300">
+              {/* Compact Category Content */}
+              <div className="p-6 relative">
+                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-900 transition-colors duration-300">
                   {category.name}
                 </h3>
                 
-                <p className="text-slate-600 text-sm leading-relaxed mb-6 group-hover:text-slate-700 transition-colors duration-300">
+                <p className="text-slate-600 text-sm leading-relaxed mb-4 group-hover:text-slate-700 transition-colors duration-300">
                   {category.description}
                 </p>
 
-                {/* Enhanced Features */}
-                <ul className="space-y-3 mb-8">
+                {/* Compact Features */}
+                <ul className="space-y-2 mb-6">
                   {category.features.map((feature, featureIndex) => (
                     <li 
                       key={featureIndex} 
-                      className="flex items-center gap-3 text-sm text-slate-600 group-hover:text-slate-700 transition-all duration-300"
+                      className="flex items-center gap-2 text-sm text-slate-600 group-hover:text-slate-700 transition-all duration-300"
                       style={{ transitionDelay: `${featureIndex * 50}ms` }}
                     >
-                      <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all duration-300">
-                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      <div className="w-5 h-5 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all duration-300">
+                        <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
                       </div>
                       <span className="font-medium">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                {/* Enhanced CTA Button */}
+                {/* Compact CTA Button */}
                 <Link
                   href={category.href}
-                  className="group/btn inline-flex items-center gap-2 bg-gradient-to-r from-blue-900 to-blue-800 text-white px-6 py-3 rounded-xl font-medium text-sm hover:from-blue-800 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 relative overflow-hidden"
+                  className="group/btn inline-flex items-center gap-2 bg-gradient-to-r from-blue-900 to-blue-800 text-white px-5 py-2.5 rounded-xl font-medium text-sm hover:from-blue-800 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 relative overflow-hidden"
                 >
                   <span className="relative z-10">Xem chi tiết</span>
                   <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300 relative z-10" />
@@ -121,20 +123,20 @@ export function QuickCategories() {
           ))}
         </div>
 
-        {/* Enhanced Bottom CTA */}
-        <div className="text-center mt-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
+        {/* Compact Bottom CTA */}
+        <div className="text-center mt-12 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
           <div className="max-w-lg mx-auto">
-            <div className="bg-gradient-to-r from-white to-blue-50/50 rounded-2xl border border-slate-200/50 p-8 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm">
+            <div className="bg-gradient-to-r from-white to-blue-50/50 rounded-2xl border border-slate-200/50 p-6 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm">
               
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Cần tư vấn chuyên nghiệp?</h3>
-              <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Cần tư vấn chuyên nghiệp?</h3>
+              <p className="text-slate-600 text-sm mb-4 leading-relaxed">
                 Đội ngũ kỹ thuật giàu kinh nghiệm sẵn sàng hỗ trợ bạn lựa chọn sản phẩm phù hợp nhất
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 relative overflow-hidden"
+                  className="group inline-flex items-center gap-2 bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 relative overflow-hidden"
                 >
                   <span className="relative z-10">Liên hệ ngay</span>
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />

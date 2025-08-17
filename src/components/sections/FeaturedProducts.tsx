@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { SparklesIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
@@ -39,10 +40,11 @@ export function FeaturedProducts() {
               <Card className="h-full gradient-card border-0 shadow-soft hover:shadow-hover transition-all group card-interactive overflow-hidden">
                 {/* Product Image */}
                 <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
-                  <img 
+                  <Image 
                     src={product.image} 
                     alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3">
                     <Badge className="gradient-accent text-white shadow-soft">{product.category}</Badge>
