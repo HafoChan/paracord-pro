@@ -79,7 +79,7 @@ export function CapabilitySection() {
         </div>
 
         {/* Capabilities grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 px-16">
           {capabilities.map((capability, index) => (
             <Card key={index} className="h-full">
               <CardHeader>
@@ -109,7 +109,7 @@ export function CapabilitySection() {
           <h3 className="text-2xl font-bold text-slate-900 mb-8">
             Chứng nhận & Tiêu chuẩn
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-16">
             {certifications.map((cert, index) => (
               <Card key={index} className="text-center">
                 <CardContent className="p-6">

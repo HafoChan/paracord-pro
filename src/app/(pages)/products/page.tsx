@@ -14,7 +14,7 @@ export default function ProductsPage() {
   return (
     <MainLayout>
       <ProductsHero />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-16 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <aside className="lg:col-span-1">
             <ProductFilters />

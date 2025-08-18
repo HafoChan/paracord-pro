@@ -10,7 +10,7 @@ export function ContactCTA() {
       <div className="absolute top-1/4 -left-32 w-64 h-64 bg-gradient-to-br from-blue-400/8 to-indigo-500/8 rounded-full blur-3xl"></div>
       <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-gradient-to-br from-purple-400/8 to-pink-500/8 rounded-full blur-3xl"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-16 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Compact heading */}
           <div className="mb-8">

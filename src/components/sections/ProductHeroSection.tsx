@@ -71,7 +71,7 @@ export function ProductHeroSection() {
       <div className="absolute top-40 right-32 w-24 h-24 bg-gradient-to-br from-purple-400/20 to-pink-500/20 rounded-lg rotate-45 blur-lg animate-float" style={{animationDelay: '2s'}}></div>
       <div className="absolute bottom-32 left-40 w-20 h-20 bg-gradient-to-br from-green-400/20 to-teal-500/20 rounded-full blur-lg animate-float" style={{animationDelay: '4s'}}></div>
       
-      <div className="container mx-auto px-4 py-6 relative z-10">
+      <div className="container mx-auto px-16 py-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
           {/* Left Side - Company Information */}
