@@ -1,7 +1,7 @@
 export function ProductsHero() {
   return (
     <section className="bg-gradient-to-r from-slate-50 to-white py-8">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-16">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
             Sản phẩm của chúng tôi

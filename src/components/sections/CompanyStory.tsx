@@ -83,7 +83,7 @@ export function CompanyStory() {
           <h3 className="text-2xl font-bold text-slate-900 text-center mb-12">
             Các mốc quan trọng
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-16">
             {milestones.map((milestone, index) => (
               <Card key={index} className="text-center">
                 <CardContent className="p-6">
@@ -110,7 +110,7 @@ export function CompanyStory() {
           <h3 className="text-2xl font-bold text-slate-900 text-center mb-12">
             Giá trị cốt lõi
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-16">
             {values.map((value, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">

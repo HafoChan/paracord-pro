@@ -1,6 +1,8 @@
+"use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { 
   PhoneIcon, 
   EnvelopeIcon, 
@@ -41,13 +43,40 @@ const categoryLabels = {
 };
 
 export function ProductDetail({ product }: ProductDetailProps) {
+  // State cho ảnh hiện tại
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  
+  // Tạo danh sách ảnh từ product.images hoặc fallback images
+  const productImages = product.images.length > 0 
+    ? product.images 
+    : [
+        getProductImage(`${product.category}_${product.id}`, 'main') as string,
+        getCategoryImage(product.category as 'paracord' | 'eband' | 'service'),
+        getCategoryImage(product.category as 'paracord' | 'eband' | 'service'),
+        getCategoryImage(product.category as 'paracord' | 'eband' | 'service')
+      ];
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft') {
+        setSelectedImageIndex(selectedImageIndex === 0 ? productImages.length - 1 : selectedImageIndex - 1);
+      } else if (event.key === 'ArrowRight') {
+        setSelectedImageIndex(selectedImageIndex === productImages.length - 1 ? 0 : selectedImageIndex + 1);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImageIndex, productImages.length]);
+
   return (
     <div className="py-8 bg-white relative overflow-hidden">
       {/* Enhanced background */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-green-400/10 to-blue-400/10 rounded-full blur-3xl"></div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-16 relative z-10">
         {/* Enhanced Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-slate-600 mb-8 animate-fade-in-up">
           <Link href="/" className="hover:text-slate-900 hover:text-gradient transition-all">Trang chủ</Link>
@@ -68,26 +97,86 @@ export function ProductDetail({ product }: ProductDetailProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
           {/* Enhanced Product Images */}
           <div className="space-y-4 lg:sticky lg:top-24">
-            <div className="aspect-square bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow card-interactive group">
+            <div className="relative h-[600px] w-full bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow card-interactive group overflow-hidden">
               <Image 
-                src={product.images[0] || getProductImage(`${product.category}_${product.id}`, 'main') as string}
-                alt={product.name}
+                src={productImages[selectedImageIndex]}
+                alt={`${product.name} - Ảnh ${selectedImageIndex + 1}`}
                 fill
                 className="object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
               />
+              
+              {/* Navigation Arrows */}
+              {productImages.length > 1 && (
+                <>
+                  <button
+                    onClick={() => setSelectedImageIndex(selectedImageIndex === 0 ? productImages.length - 1 : selectedImageIndex - 1)}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 hover:bg-white rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center group/btn"
+                  >
+                    <ChevronLeft className="w-4 h-4 text-slate-600 group-hover/btn:text-slate-800" />
+                  </button>
+                  
+                  <button
+                    onClick={() => setSelectedImageIndex(selectedImageIndex === productImages.length - 1 ? 0 : selectedImageIndex + 1)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 hover:bg-white rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center group/btn"
+                  >
+                    <ChevronRight className="w-4 h-4 text-slate-600 group-hover/btn:text-slate-800" />
+                  </button>
+                </>
+              )}
+              
+              {/* Image Counter */}
+              <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded">
+                {selectedImageIndex + 1} / {productImages.length}
+              </div>
             </div>
-            <div className="grid grid-cols-3 gap-4">
-              {[...Array(3)].map((_, index) => (
-                <div key={index} className="aspect-square bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl flex items-center justify-center shadow-md hover:shadow-lg transition-all cursor-pointer group">
+
+            {/* Thumbnails */}
+            <div className="grid grid-cols-8 gap-3">
+              {productImages.map((image, index) => (
+                <div 
+                  key={index} 
+                  onClick={() => setSelectedImageIndex(index)}
+                  className={`
+                    aspect-square bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl 
+                    flex items-center justify-center shadow-md hover:shadow-lg 
+                    transition-all duration-300 cursor-pointer group relative overflow-hidden
+                    ${selectedImageIndex === index 
+                      ? 'ring-2 ring-blue-500 ring-offset-2 shadow-lg transform scale-105' 
+                      : 'hover:ring-1 hover:ring-slate-300 hover:ring-offset-1 hover:scale-102'
+                    }
+                  `}
+                >
                   <Image 
-                    src={getCategoryImage(product.category as 'paracord' | 'eband' | 'service')}
-                    alt={`${product.name} - Ảnh ${index + 2}`}
+                    src={image}
+                    alt={`${product.name} - Ảnh ${index + 1}`}
                     fill
                     className="object-cover rounded-xl group-hover:scale-105 transition-transform duration-300"
                   />
+                  {selectedImageIndex === index && (
+                    <div className="absolute inset-0 bg-blue-500/10 rounded-xl"></div>
+                  )}
                 </div>
               ))}
             </div>
+            
+            {/* Dots Indicator */}
+            {productImages.length > 1 && (
+              <div className="flex justify-center space-x-2 mt-4">
+                {productImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImageIndex(index)}
+                    className={`
+                      w-2 h-2 rounded-full transition-all duration-300
+                      ${selectedImageIndex === index 
+                        ? 'bg-blue-500 w-6' 
+                        : 'bg-slate-300 hover:bg-slate-400'
+                      }
+                    `}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Product Info */}
@@ -144,22 +233,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
                   <HeartIcon className="h-4 w-4 mr-2 group-hover:text-pink-600 transition-colors" />
                   Yêu thích
                 </Button>
-              </div>
-            </div>
-            
-            {/* Trust badges */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100">
-              <div className="text-center p-4 rounded-xl bg-green-50 hover:bg-green-100 transition-colors group">
-                <CheckCircleIcon className="h-6 w-6 text-green-600 mx-auto mb-1 group-hover:scale-110 transition-transform" />
-                <div className="text-xs font-medium text-green-700">Chất lượng</div>
-              </div>
-              <div className="text-center p-4 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors group">
-                <TruckIcon className="h-6 w-6 text-blue-600 mx-auto mb-1 group-hover:scale-110 transition-transform" />
-                <div className="text-xs font-medium text-blue-700">Giao nhanh</div>
-              </div>
-              <div className="text-center p-4 rounded-xl bg-purple-50 hover:bg-purple-100 transition-colors group">
-                <ShieldCheckIcon className="h-6 w-6 text-purple-600 mx-auto mb-1 group-hover:scale-110 transition-transform" />
-                <div className="text-xs font-medium text-purple-700">Bảo hành</div>
               </div>
             </div>
 

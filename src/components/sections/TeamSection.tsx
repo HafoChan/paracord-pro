@@ -63,7 +63,7 @@ export function TeamSection() {
         </div>
 
         {/* Team stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 px-16">
           {teamStats.map((stat, index) => (
             <Card key={index} className="text-center">
               <CardContent className="p-6">
@@ -86,7 +86,7 @@ export function TeamSection() {
           <h3 className="text-2xl font-bold text-slate-900 text-center mb-8">
             Các bộ phận chuyên môn
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-16">
             {departments.map((dept, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
