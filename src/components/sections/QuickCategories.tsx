@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { PRODUCT_IMAGES } from "@/lib/images";
+import { PRODUCT_CATEGORY_IMAGES } from "@/lib/assets";
 
 const categories = [
   {
     id: 'paracord',
     name: 'Dây dù bản tròn',
     description: 'Dây dù đa năng cho quần áo, áo khoác, dây rút balo. Có thể bấm đầu típ và cắt theo yêu cầu.',
-    image: PRODUCT_IMAGES.paracord.featured,
+    image: PRODUCT_CATEGORY_IMAGES.paracord.featured,
     features: ['Đa dạng màu sắc', 'Gia công bấm đầu', 'Cắt theo yêu cầu'],
     href: '/products?category=paracord'
   },
@@ -16,7 +16,7 @@ const categories = [
     id: 'eband',
     name: 'Dây đai thun Eband',
     description: 'Dây đai thun bản dẹp cho quai balo, túi xách, thun lưng. Độ đàn hồi cao, bền chắc.',
-    image: PRODUCT_IMAGES.eband.featured,
+    image: PRODUCT_CATEGORY_IMAGES.eband.featured,
     features: ['Độ đàn hồi cao', 'Bền chắc', 'Đặt theo độ rộng'],
     href: '/products?category=eband'
   },
@@ -24,7 +24,7 @@ const categories = [
     id: 'service',
     name: 'Dịch vụ gia công',
     description: 'Chế biến, cắt, nối, bấm đầu, đóng gói. Tư vấn thiết kế mẫu và lên đơn nhanh.',
-    image: PRODUCT_IMAGES.service.featured,
+    image: PRODUCT_CATEGORY_IMAGES.service.featured,
     features: ['Tư vấn thiết kế', 'Gia công nhanh', 'Đóng gói chuyên nghiệp'],
     href: '/contact'
   }

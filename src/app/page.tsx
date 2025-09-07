@@ -1,15 +1,13 @@
-"use client";
-
-import { ProductHeroSection } from "@/components/sections/ProductHeroSection";
-import { AboutSection } from "@/components/sections/AboutSection";
+import { HeroSlider } from "@/components/sections/HeroSlider";
 import { QuickCategories } from "@/components/sections/QuickCategories";
+import { AboutSection } from "@/components/sections/AboutSection";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 import { MainLayout } from "@/components/layout/MainLayout";
 
 export default function Home() {
   return (
     <MainLayout>
-      <ProductHeroSection />
+      <HeroSlider />
       <QuickCategories />
       <AboutSection />
       <ContactCTA />

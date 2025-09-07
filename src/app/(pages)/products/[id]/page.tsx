@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { ProductDetail } from "@/components/sections/ProductDetail";
-import { getProductImage } from "@/lib/images";
+import { getProductImage } from "@/lib/assets";
 
 // Mock product data - in real app this would come from database
 const products = [

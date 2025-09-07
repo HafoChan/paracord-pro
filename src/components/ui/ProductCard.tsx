@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Eye, Phone, ShoppingCart, Star, Heart, Share2 } from "lucide-react";
+import { Eye, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./Card";
 import { Button } from "./Button";
 import { Badge } from "./Badge";
-import { COMPANY_INFO } from "@/lib/constants";
 import { Product } from "@/types";
 
 interface ProductCardProps {
@@ -38,25 +37,11 @@ const colorMap = {
 
 export function ProductCard({ 
   product, 
-  viewMode, 
-  showFavorite = true, 
-  showShare = true, 
-  onFavorite, 
-  onShare 
+  viewMode
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(true);
-  const [isFavorited, setIsFavorited] = useState(false);
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
-
-  const handleFavorite = () => {
-    setIsFavorited(!isFavorited);
-    onFavorite?.(product.id);
-  };
-
-  const handleShare = () => {
-    onShare?.(product);
-  };
   if (viewMode === "list") {
     return (
       <Card 

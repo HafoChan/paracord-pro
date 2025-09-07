@@ -9,18 +9,18 @@ import {
 } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/Button";
 import { ParticleBackground } from "@/components/ui/ParticleBackground";
-import { COMPANY_INFO } from "@/lib/constants";
-
-// Define industries constant for better maintainability
-const INDUSTRIES = [
-  { name: "Ngành may mặc", icon: SwatchIcon, ariaLabel: "Clothing industry" },
-  { name: "Balo - túi xách", icon: BriefcaseIcon, ariaLabel: "Backpacks and bags" },
-  { name: "Đồ thể thao", icon: HeartIcon, ariaLabel: "Sports equipment" },
-  { name: "Y tế - sức khỏe", icon: UserGroupIcon, ariaLabel: "Healthcare" },
-  { name: "Thủ công mỹ nghệ", icon: PaintBrushIcon, ariaLabel: "Handicrafts" },
-];
+import { COMPANY_INFO, HERO_CONTENT } from "@/lib/constants";
 
 export function HeroSection() {
+  // Icon mapping for industries
+  const industryIcons = {
+    "Ngành may mặc": SwatchIcon,
+    "Balo - túi xách": BriefcaseIcon, 
+    "Đồ thể thao": HeartIcon,
+    "Y tế - sức khỏe": UserGroupIcon,
+    "Thủ công mỹ nghệ": PaintBrushIcon,
+  };
+
   return (
     <section className="relative gradient-hero py-12 lg:py-20 overflow-hidden">
       {/* Enhanced Background decorations */}
@@ -35,19 +35,16 @@ export function HeroSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           {/* Main heading */}
-                      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
-              Sản xuất{" "}
-              <span className="text-shimmer">dây dù</span> và{" "}
-              <span className="text-shimmer">dây đai thun</span>{" "}
-              chất lượng cao
-            </h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
+            {HERO_CONTENT.title}
+          </h1>
 
           {/* Subheading */}
           <p
             className="text-lg sm:text-xl md:text-2xl text-slate-600 mb-8 max-w-4xl mx-auto font-medium leading-relaxed animate-fade-in-up"
             style={{ animationDelay: "0.2s", animationFillMode: "both" }}
           >
-            {COMPANY_INFO.description}. Phục vụ khách hàng trên toàn quốc với chất lượng uy tín.
+            {COMPANY_INFO.description}. {HERO_CONTENT.subtitle}
           </p>
 
           {/* Key features */}
@@ -55,11 +52,7 @@ export function HeroSection() {
             className="flex flex-wrap justify-center gap-6 sm:gap-8 mb-10 sm:mb-12 text-slate-600 animate-fade-in-up"
             style={{ animationDelay: "0.4s", animationFillMode: "both" }}
           >
-            {[
-              { text: "Gia công theo yêu cầu", delay: "0s" },
-              { text: "Đa dạng màu sắc", delay: "0.5s" },
-              { text: "Giao hàng toàn quốc", delay: "1s" },
-            ].map((feature, index) => (
+            {HERO_CONTENT.keyFeatures.map((feature, index) => (
               <div
                 key={index}
                 className="flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-soft hover:shadow-hover transition-all hover-lift"
@@ -84,7 +77,7 @@ export function HeroSection() {
               asChild
             >
               <Link href="/products" className="flex items-center gap-2">
-                Xem sản phẩm
+                {HERO_CONTENT.ctaButtons.primary}
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -100,7 +93,7 @@ export function HeroSection() {
                 aria-label={`Call us at ${COMPANY_INFO.phone}`}
               >
                 <Phone className="h-5 w-5 group-hover:animate-bounce-slow" />
-                Gọi ngay: {COMPANY_INFO.phone}
+                {HERO_CONTENT.ctaButtons.secondary}: {COMPANY_INFO.phone}
               </Link>
             </Button>
           </div>
@@ -112,21 +105,24 @@ export function HeroSection() {
           >
             <div className="glass rounded-2xl p-6 sm:p-8 shadow-soft">
               <p className="text-slate-500 text-sm font-medium mb-6">
-                Được tin tưởng bởi các doanh nghiệp
+                {HERO_CONTENT.trustIndicators.title}
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                                 {INDUSTRIES.map((industry, index) => (
-                   <div
-                     key={index}
-                     className="text-center p-3 rounded-xl hover:bg-white/60 transition-all hover-lift group"
-                     aria-label={industry.ariaLabel}
-                   >
-                     <div className="w-8 h-8 mx-auto mb-2 text-slate-600 group-hover:text-blue-600 transition-colors">
-                       <industry.icon className="w-full h-full" />
-                     </div>
-                     <div className="text-xs font-medium text-slate-600 group-hover:text-slate-900 transition-colors">{industry.name}</div>
-                   </div>
-                ))}
+                {HERO_CONTENT.trustIndicators.industries.map((industry, index) => {
+                  const IconComponent = industryIcons[industry.name as keyof typeof industryIcons];
+                  return (
+                    <div
+                      key={index}
+                      className="text-center p-3 rounded-xl hover:bg-white/60 transition-all hover-lift group"
+                      aria-label={industry.ariaLabel}
+                    >
+                      <div className="w-8 h-8 mx-auto mb-2 text-slate-600 group-hover:text-blue-600 transition-colors">
+                        <IconComponent className="w-full h-full" />
+                      </div>
+                      <div className="text-xs font-medium text-slate-600 group-hover:text-slate-900 transition-colors">{industry.name}</div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

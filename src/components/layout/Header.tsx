@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { PhoneIcon, ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/Button";
-import { COMPANY_INFO, NAVIGATION_ITEMS } from "@/lib/constants";
+import { COMPANY_INFO } from "@/lib/constants";
+import { NAVIGATION_CONTENT } from "@/lib/content";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +23,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+    <header className={`sticky top-0 z-50 w-full transition-all duration-300 px-12 ${
       isScrolled 
         ? 'bg-white/95 backdrop-blur-lg border-b border-slate-200/60 shadow-lg' 
         : 'bg-white/80 backdrop-blur-sm border-b border-slate-200/30 shadow-sm'
@@ -54,7 +55,7 @@ export function Header() {
 
           {/* Compact Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            {NAVIGATION_ITEMS.map((item, index) => (
+            {NAVIGATION_CONTENT.items.map((item, index) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -124,7 +125,7 @@ export function Header() {
           <nav className="md:hidden mt-4 pb-4 border-t border-slate-200/50 animate-fade-in-up">
             <div className="bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-lg rounded-2xl p-6 mt-4 shadow-xl border border-white/20">
               <div className="space-y-2">
-                {NAVIGATION_ITEMS.map((item, index) => (
+                {NAVIGATION_CONTENT.items.map((item, index) => (
                   <Link
                     key={item.href}
                     href={item.href}

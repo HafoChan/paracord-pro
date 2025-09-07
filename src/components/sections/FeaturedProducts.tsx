@@ -5,9 +5,8 @@ import { SparklesIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { FEATURED_PRODUCTS_IMAGES } from "@/lib/images";
-
-const featuredProducts = FEATURED_PRODUCTS_IMAGES;
+import { FEATURED_PRODUCTS_SECTION } from "@/lib/constants";
+import { FEATURED_PRODUCTS_DATA } from "@/lib/data/products";
 
 export function FeaturedProducts() {
   return (
@@ -21,17 +20,17 @@ export function FeaturedProducts() {
         {/* Enhanced section header */}
         <div className="text-center mb-12 animate-fade-in-up">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            <span className="text-gradient">Sản phẩm</span>{" "}
-            <span className="text-gradient-accent">nổi bật</span>
+            <span className="text-gradient">{FEATURED_PRODUCTS_SECTION.title.highlight}</span>{" "}
+            <span className="text-gradient-accent">{FEATURED_PRODUCTS_SECTION.title.accent}</span>
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Khám phá các sản phẩm chất lượng cao được nhiều khách hàng tin tưởng và lựa chọn hàng đầu
+            {FEATURED_PRODUCTS_SECTION.subtitle}
           </p>
         </div>
 
         {/* Enhanced products grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {featuredProducts.map((product, index) => (
+          {FEATURED_PRODUCTS_DATA.map((product, index: number) => (
             <div 
               key={product.id} 
               className="animate-fade-in-up hover-lift transition-all"
@@ -62,7 +61,7 @@ export function FeaturedProducts() {
                 <CardContent>
                   {/* Enhanced features list */}
                   <ul className="space-y-3 mb-6">
-                    {product.features.map((feature, featureIndex) => (
+                    {product.features.map((feature: string, featureIndex: number) => (
                       <li key={featureIndex} className="flex items-center gap-3 text-sm text-slate-600 group/item">
                         <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 group-hover/item:scale-110 transition-transform">
                           <CheckCircleIcon className="w-3 h-3 text-white" />
@@ -93,11 +92,11 @@ export function FeaturedProducts() {
         {/* Enhanced CTA section */}
         <div className="text-center animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
           <div className="glass rounded-2xl p-8 max-w-md mx-auto shadow-soft">
-            <h3 className="text-xl font-bold text-gradient mb-4">Khám phá thêm</h3>
-            <p className="text-slate-600 mb-6">Xem toàn bộ danh mục sản phẩm của chúng tôi</p>
+            <h3 className="text-xl font-bold text-gradient mb-4">{FEATURED_PRODUCTS_SECTION.cta.title}</h3>
+            <p className="text-slate-600 mb-6">{FEATURED_PRODUCTS_SECTION.cta.description}</p>
             <Button size="lg" className="gradient-button hover:shadow-hover transition-all hover-lift group" asChild>
-              <Link href="/products" className="flex items-center gap-2">
-                Xem tất cả sản phẩm
+              <Link href={FEATURED_PRODUCTS_SECTION.cta.href} className="flex items-center gap-2">
+                {FEATURED_PRODUCTS_SECTION.cta.buttonText}
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>

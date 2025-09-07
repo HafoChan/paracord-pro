@@ -7,16 +7,13 @@ import {
   PhoneIcon, 
   EnvelopeIcon, 
   ShareIcon, 
-  HeartIcon,
-  CheckCircleIcon,
-  TruckIcon,
-  ShieldCheckIcon
+  HeartIcon
 } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { COMPANY_INFO } from "@/lib/constants";
-import { getProductImage, getCategoryImage } from "@/lib/images";
+import { getProductImage, getCategoryImage } from "@/lib/assets";
 
 interface Product {
   id: string;
