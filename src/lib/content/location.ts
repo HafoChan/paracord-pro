@@ -10,17 +10,14 @@ export const LOCATION_MAP = {
   mapPlaceholder: {
     title: "Bản đồ Google Maps",
     description: "Tích hợp bản đồ sẽ hiển thị vị trí chính xác của công ty",
-    buttonText: "Mở trong Google Maps"
+    buttonText: "Mở trong Google Maps",
+    googleMapsUrl: "https://maps.app.goo.gl/vNgVGKd6VuZsi1eJ7"
   },
   addresses: {
     title: "Địa chỉ",
-    showroom: {
-      title: "Showroom & Văn phòng",
-      address: "Địa chỉ showroom"
-    },
-    factory: {
-      title: "Nhà máy sản xuất", 
-      address: "Địa chỉ nhà máy"
+    office: {
+      title: "Văn phòng & Nhà máy",
+      address: "49A, đường 460, ấp Thạnh An, xã Trung An, huyện Củ Chi, TP.HCM"
     }
   },
   visitNotes: {
@@ -29,14 +26,14 @@ export const LOCATION_MAP = {
       "Vui lòng liên hệ trước khi đến để được hỗ trợ tốt nhất",
       "Có thể tham quan nhà máy sản xuất theo lịch hẹn",
       "Mang theo danh thiếp hoặc giấy tờ giới thiệu công ty",
-      "Đội ngũ tư vấn sẵn sàng hỗ trợ từ 8:00 - 17:30"
+      "Đội ngũ tư vấn sẵn sàng hỗ trợ từ 7:00 - 19:00 (Thứ 2-7)"
     ]
   }
 };
 
-// Company Address (this would be replaced with actual addresses)
+// Company Address
 export const COMPANY_ADDRESS = {
-  showroom: "Địa chỉ showroom",
-  factory: "Địa chỉ nhà máy",
-  googleMapsQuery: "Địa chỉ công ty" // This would be the actual address for Google Maps
+  office: "49A, đường 460, ấp Thạnh An, xã Trung An, huyện Củ Chi, TP.HCM",
+  googleMapsUrl: "https://maps.app.goo.gl/vNgVGKd6VuZsi1eJ7",
+  googleMapsQuery: "49A đường 460 Củ Chi TP.HCM"
 };

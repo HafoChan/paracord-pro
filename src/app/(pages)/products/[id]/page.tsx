@@ -12,7 +12,7 @@ const products = [
     category: "paracord",
     description: "Dây dù chất lượng cao, bền chắc, phù hợp cho quần áo và phụ kiện thời trang. Sản phẩm được sản xuất từ chất liệu polyester cao cấp, đảm bảo độ bền và tính thẩm mỹ cao.",
     fullDescription: `
-      Dây dù bản tròn màu đen là sản phẩm cao cấp của Paracord Pro, được thiết kế đặc biệt cho các ứng dụng thời trang và công nghiệp. 
+      Dây dù bản tròn màu đen là sản phẩm cao cấp của MINH TIEN STRING CO., LTD, được thiết kế đặc biệt cho các ứng dụng thời trang và công nghiệp. 
       
       **Đặc điểm nổi bật:**
       - Chất liệu polyester cao cấp, bền chắc
@@ -57,12 +57,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   if (!product) {
     return {
-      title: "Sản phẩm không tìm thấy - Paracord Pro"
+      title: "Sản phẩm không tìm thấy - MINH TIEN STRING CO., LTD"
     };
   }
 
   return {
-    title: `${product.name} - Paracord Pro`,
+    title: `${product.name} - MINH TIEN STRING CO., LTD`,
     description: product.description,
     keywords: [product.name, product.category, "paracord pro", "dây dù", "dây đai thun"],
     openGraph: {

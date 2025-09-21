@@ -1,6 +1,6 @@
 # Content Management System
 
-Hệ thống quản lý nội dung tập trung cho website Paracord Pro. Tất cả văn bản, labels, messages và assets được tổ chức trong thư mục này để dễ dàng quản lý và cập nhật.
+Hệ thống quản lý nội dung tập trung cho website MINH TIEN STRING CO., LTD. Tất cả văn bản, labels, messages và assets được tổ chức trong thư mục này để dễ dàng quản lý và cập nhật.
 
 ## Cấu trúc thư mục
 
@@ -103,4 +103,4 @@ export const CONTENT = {
 
 ---
 
-Được tạo bởi Paracord Pro Development Team
+Được tạo bởi MINH TIEN STRING CO., LTD Development Team

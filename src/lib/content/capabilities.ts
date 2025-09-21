@@ -47,25 +47,3 @@ export const CAPABILITIES = [
   }
 ];
 
-export const CERTIFICATIONS = {
-  title: "Chứng nhận & Tiêu chuẩn",
-  list: [
-    {
-      name: "ISO 9001:2015",
-      description: "Hệ thống quản lý chất lượng"
-    },
-    {
-      name: "CE Marking",
-      description: "Chứng nhận an toàn châu Âu"
-    },
-    {
-      name: "REACH Compliance",
-      description: "Tuân thủ quy định hóa chất EU"
-    },
-    {
-      name: "OEKO-TEX",
-      description: "An toàn sinh thái dệt may"
-    }
-  ]
-};
-

@@ -23,14 +23,14 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-300 px-12 ${
+    <header className={`sticky top-0 z-50 w-full transition-all duration-300 px-4 sm:px-6 lg:px-12 ${
       isScrolled 
         ? 'bg-white/95 backdrop-blur-lg border-b border-slate-200/60 shadow-lg' 
         : 'bg-white/80 backdrop-blur-sm border-b border-slate-200/30 shadow-sm'
     }`}>
 
       {/* Compact main navigation */}
-      <div className="container mx-auto px-4 py-3">
+      <div className="container mx-auto px-2 sm:px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Compact Logo */}
           <Link href="/" className="flex items-center space-x-2.5 group transition-all duration-300 hover:scale-105">

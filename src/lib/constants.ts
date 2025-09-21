@@ -1,16 +1,19 @@
 /**
- * App Constants for Paracord Pro
+ * App Constants for MINH TIEN STRING CO., LTD
  * Thông tin cơ bản về công ty và cấu hình ứng dụng
  */
 
 // Company Information
 export const COMPANY_INFO = {
-  name: "Paracord Pro",
+  name: "MINH TIEN STRING CO., LTD",
+  vietnameseName: "Công ty TNHH sản xuất dây Minh Tiến",
+  taxId: "0317581385",
   slogan: "Chất lượng - Uy tín - Chuyên nghiệp",
   description: "Chuyên sản xuất và gia công dây dù, dây đai thun cho ngành may mặc, balo túi xách, thể thao",
-  email: "info@paracordpro.vn",
-  phone: "0123456789",
-  address: "Địa chỉ công ty",
+  email: "congtytnhhsxdayminhtien@gmail.com",
+  phone: "0353788878",
+  address: "49A, đường 460, ấp Thạnh An, xã Trung An, huyện Củ Chi, TP.HCM",
+  googleMapsUrl: "https://maps.app.goo.gl/vNgVGKd6VuZsi1eJ7",
   website: "https://paracordpro.vn",
   founded: "2014",
   employees: "50+",
@@ -32,11 +35,11 @@ export type ProductCategory = typeof PRODUCT_CATEGORIES[keyof typeof PRODUCT_CAT
 
 // App Configuration
 export const APP_CONFIG = {
-  name: "Paracord Pro Website",
+  name: "MINH TIEN STRING CO., LTD Website",
   version: "1.0.0",
-  description: "Website chính thức của Paracord Pro - Chuyên sản xuất dây dù và dây đai thun chất lượng cao",
+  description: "Website chính thức của Công ty TNHH sản xuất dây Minh Tiến - Chuyên sản xuất dây dù và dây đai thun chất lượng cao",
   keywords: "dây dù, dây đai thun, paracord, elastic band, sản xuất dây, gia công dây",
-  author: "Paracord Pro Team",
+  author: "MINH TIEN STRING CO., LTD Team",
   currentYear: new Date().getFullYear()
 };
 

@@ -84,7 +84,7 @@ export function ContactForm() {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name and Email */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-slate-900 mb-2">
                 {FORM_FIELDS.name.label} {FORM_FIELDS.name.required && <span className="text-red-500">*</span>}
@@ -116,7 +116,7 @@ export function ContactForm() {
           </div>
 
           {/* Phone and Company */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-slate-900 mb-2">
                 {FORM_FIELDS.phone.label} {FORM_FIELDS.phone.required && <span className="text-red-500">*</span>}

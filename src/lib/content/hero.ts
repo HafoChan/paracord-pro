@@ -60,7 +60,7 @@ export const HERO_SLIDER_FEATURES = [
 ];
 
 export const HERO_SLIDER_BRAND = {
-  name: "PARACORD PRO",
+  name: "MINH TIEN STRING CO., LTD",
   tagline: "Sản xuất dây chuyên nghiệp"
 };
 
@@ -71,7 +71,7 @@ export const HERO_SLIDER_CTA = {
   },
   secondary: {
     text: "Gọi ngay",
-    href: "tel:"
+    href: "tel:0353788878"
   }
 };
 

@@ -46,7 +46,7 @@ export function ContactCTA() {
                 description: "Nhận báo giá",
                 action: "Gửi email",
                 href: `mailto:${COMPANY_INFO.email}`,
-                detail: "info@paracordpro.com",
+                detail: "congtytnhhsxdayminhtien@gmail.com",
                 color: "from-green-500 to-green-600"
               },
               {

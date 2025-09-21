@@ -64,7 +64,7 @@ export const LOGO_ASSETS = {
 
 // Image Alt Text Templates
 export const IMAGE_ALT_TEXTS = {
-  factory: "Nhà máy sản xuất Paracord Pro",
+  factory: "Nhà máy sản xuất MINH TIEN STRING CO., LTD",
   sample: "Mẫu sản phẩm dây dù và dây đai thun",
   product: {
     paracord: "Sản phẩm dây dù chất lượng cao",

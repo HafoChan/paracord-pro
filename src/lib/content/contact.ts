@@ -17,8 +17,7 @@ export const CONTACT_INFO = {
   workingHours: {
     title: "Giờ làm việc",
     schedule: [
-      "Thứ 2 - Thứ 6: 8:00 - 17:30",
-      "Thứ 7: 8:00 - 12:00",
+      "Thứ 2 - Thứ 7: 7:00 - 19:00",
       "Chủ nhật: Nghỉ"
     ]
   },
@@ -34,8 +33,7 @@ export const CONTACT_INFO = {
 
 // Business Hours (moved from constants.ts)
 export const BUSINESS_HOURS = {
-  weekdays: "Thứ 2 - Thứ 6: 8:00 - 17:30",
-  saturday: "Thứ 7: 8:00 - 12:00", 
+  workdays: "Thứ 2 - Thứ 7: 7:00 - 19:00", 
   sunday: "Chủ nhật: Nghỉ"
 };
 
@@ -63,7 +61,7 @@ export const CONTACT_FORM = {
     },
     phone: {
       label: "Số điện thoại", 
-      placeholder: "0123456789",
+      placeholder: "0353788878",
       required: true
     },
     company: {
@@ -92,7 +90,7 @@ export const SUCCESS_MESSAGE = {
   description: "Chúng tôi đã nhận được tin nhắn của bạn và sẽ phản hồi trong vòng 30 phút trong giờ làm việc. Để được hỗ trợ nhanh hơn, vui lòng gọi hotline.",
   callToAction: {
     text: "Gọi ngay",
-    phoneDisplay: "0123456789"
+    phoneDisplay: "0353788878"
   }
 };
 
@@ -108,7 +106,7 @@ export const CONTACT_CTA = {
     },
     secondary: {
       text: "Gọi hotline",
-      href: "tel:"
+      href: "tel:0353788878"
     }
   },
   features: [

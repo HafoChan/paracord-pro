@@ -63,7 +63,7 @@ export function HeroSlider() {
 
         {/* Modern Hero Content */}
         <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-6 lg:px-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
             <div className="max-w-5xl mx-auto">
               
               {/* Modern Brand Header */}
@@ -81,13 +81,13 @@ export function HeroSlider() {
 
               {/* Refined Typography */}
               <div className="text-center lg:text-left hero-animate-in" style={{animationDelay: '0.2s'}}>
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight tracking-tight">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight tracking-tight">
                   {currentSlideData.title}
                 </h1>
-                <p className="text-xl lg:text-2xl text-white mb-3 font-semibold leading-tight">
+                <p className="text-lg sm:text-xl lg:text-2xl text-white mb-3 font-semibold leading-tight">
                   {currentSlideData.subtitle}
                 </p>
-                <p className="text-base lg:text-lg text-white/80 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base lg:text-lg text-white/80 mb-8 sm:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
                   {currentSlideData.description}
                 </p>
               </div>
@@ -96,7 +96,7 @@ export function HeroSlider() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start hero-animate-in" style={{animationDelay: '0.4s'}}>
                 <Link 
                   href={HERO_SLIDER_CTA.primary.href}
-                  className="group bg-white text-navy-900 px-8 py-4 rounded-3xl font-bold text-lg transition-all duration-300 hover:bg-gray-100 hover:scale-105 hover:-translate-y-1 shadow-2xl flex items-center justify-center gap-3 min-w-[220px]"
+                  className="group bg-white text-navy-900 px-6 sm:px-8 py-3 sm:py-4 rounded-3xl font-bold text-base sm:text-lg transition-all duration-300 hover:bg-gray-100 hover:scale-105 hover:-translate-y-1 shadow-2xl flex items-center justify-center gap-2 sm:gap-3 min-w-[180px] sm:min-w-[220px]"
                 >
                   <span>{HERO_SLIDER_CTA.primary.text}</span>
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -104,7 +104,7 @@ export function HeroSlider() {
                 
                 <a 
                   href={`${HERO_SLIDER_CTA.secondary.href}${COMPANY_INFO.phone}`}
-                  className="glass-button group text-white px-8 py-4 rounded-3xl font-semibold text-lg flex items-center justify-center gap-3 min-w-[220px]"
+                  className="glass-button group text-white px-6 sm:px-8 py-3 sm:py-4 rounded-3xl font-semibold text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 min-w-[180px] sm:min-w-[220px]"
                 >
                   <Phone className="h-5 w-5" />
                   <span>{COMPANY_INFO.phone}</span>
@@ -112,19 +112,19 @@ export function HeroSlider() {
               </div>
 
               {/* Modern Trust Indicators */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-4 mt-12 hero-animate-in" style={{animationDelay: '0.6s'}}>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mt-8 sm:mt-12 hero-animate-in" style={{animationDelay: '0.6s'}}>
                 {HERO_SLIDER_FEATURES.map((feature, index) => {
                   const IconComponent = feature.icon === "Award" ? Award : 
                                       feature.icon === "Target" ? Target : Truck;
                   return (
                     <div
                       key={index}
-                      className="glass-card group px-4 py-2 text-white font-medium transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center gap-3 rounded-2xl"
+                      className="glass-card group px-3 sm:px-4 py-2 text-white font-medium transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center gap-2 sm:gap-3 rounded-2xl"
                     >
                       <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-900 rounded-xl flex items-center justify-center shadow-lg">
                         <IconComponent className="h-5 w-5 text-white" />
                       </div>
-                      <span className="text-md font-semibold">{feature.text}</span>
+                      <span className="text-sm sm:text-base font-semibold">{feature.text}</span>
                     </div>
                   );
                 })}

@@ -3,19 +3,6 @@
  * Chứa tất cả nội dung liên quan đến đội ngũ và tổ chức
  */
 
-// Team Section Content
-export const TEAM_SECTION = {
-  title: "Đội ngũ của chúng tôi",
-  subtitle: "Sức mạnh của Paracord Pro đến từ đội ngũ nhân viên tận tâm, chuyên nghiệp và không ngừng học hỏi để mang đến dịch vụ tốt nhất.",
-  departments: {
-    title: "Các bộ phận chuyên môn"
-  },
-  culture: {
-    title: "Văn hóa doanh nghiệp",
-    description: "Tại Paracord Pro, chúng tôi xây dựng một môi trường làm việc tích cực, khuyến khích sáng tạo và phát triển cá nhân. Mỗi thành viên đều được tôn trọng, có cơ hội học hỏi và thăng tiến trong sự nghiệp. Chúng tôi tin rằng nhân viên hạnh phúc sẽ tạo ra sản phẩm chất lượng và dịch vụ xuất sắc."
-  }
-};
-
 // Team Statistics
 export const TEAM_STATS = [
   {

@@ -1,6 +1,6 @@
 import { Factory, Cog, Truck, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
-import { CAPABILITIES_SECTION, CAPABILITIES, CERTIFICATIONS } from "@/lib/content";
+import { CAPABILITIES_SECTION, CAPABILITIES } from "@/lib/content";
 
 // Icon mapping for capabilities
 const capabilityIcons = {
@@ -51,30 +51,6 @@ export function CapabilitySection() {
               </Card>
             );
           })}
-        </div>
-
-        {/* Certifications */}
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-slate-900 mb-8">
-            {CERTIFICATIONS.title}
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-16">
-            {CERTIFICATIONS.list.map((cert, index) => (
-              <Card key={index} className="text-center">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 bg-slate-100 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <CheckCircle className="h-8 w-8 text-slate-600" />
-                  </div>
-                  <h4 className="font-semibold text-slate-900 mb-2">
-                    {cert.name}
-                  </h4>
-                  <p className="text-sm text-slate-600">
-                    {cert.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
       </div>
     </section>

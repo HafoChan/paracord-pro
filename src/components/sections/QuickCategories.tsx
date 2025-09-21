@@ -37,7 +37,7 @@ export function QuickCategories() {
       <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-indigo-500/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-br from-purple-400/10 to-pink-500/10 rounded-full blur-2xl"></div>
       
-      <div className="container mx-auto px-16 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
         
         {/* Compact Section Header */}
         <div className="text-center mb-10 animate-fade-in-up">
@@ -55,7 +55,7 @@ export function QuickCategories() {
         </div>
 
         {/* Compact Categories Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category, index) => (
             <div 
               key={category.id}

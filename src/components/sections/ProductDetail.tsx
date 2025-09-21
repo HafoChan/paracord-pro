@@ -73,7 +73,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-green-400/10 to-blue-400/10 rounded-full blur-3xl"></div>
       
-      <div className="container mx-auto px-16 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
         {/* Enhanced Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-slate-600 mb-8 animate-fade-in-up">
           <Link href="/" className="hover:text-slate-900 hover:text-gradient transition-all">Trang chủ</Link>
@@ -91,10 +91,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </Link>
         </Button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
           {/* Enhanced Product Images */}
           <div className="space-y-4 lg:sticky lg:top-24">
-            <div className="relative h-[600px] w-full bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow card-interactive group overflow-hidden">
+            <div className="relative h-[300px] sm:h-[400px] lg:h-[600px] w-full bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow card-interactive group overflow-hidden">
               <Image 
                 src={productImages[selectedImageIndex]}
                 alt={`${product.name} - Ảnh ${selectedImageIndex + 1}`}
@@ -128,7 +128,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             {/* Thumbnails */}
-            <div className="grid grid-cols-8 gap-3">
+            <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3">
               {productImages.map((image, index) => (
                 <div 
                   key={index} 
@@ -239,7 +239,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 <CardTitle className="text-md">Thông số nhanh</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {Object.entries(product.specifications).slice(0, 4).map(([key, value]) => (
                     <div key={key}>
                       <div className="text-sm text-slate-500">{key}</div>
@@ -253,7 +253,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         </div>
 
         {/* Detailed Information */}
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           {/* Description */}
           <div className="lg:col-span-2 space-y-8">
             <Card className="shadow-sm rounded-xl">

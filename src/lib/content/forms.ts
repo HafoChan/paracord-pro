@@ -11,8 +11,8 @@ export const CONTACT_FORM_UI = {
     title: "Cảm ơn bạn đã liên hệ!",
     description: "Chúng tôi đã nhận được tin nhắn của bạn và sẽ phản hồi trong vòng 30 phút trong giờ làm việc. Để được hỗ trợ nhanh hơn, vui lòng gọi hotline.",
     callToAction: {
-      text: "Gọi ngay: 0123456789",
-      phone: "0123456789"
+      text: "Gọi ngay: 0353788878",
+      phone: "0353788878"
     }
   }
 };
@@ -31,7 +31,7 @@ export const FORM_FIELDS = {
   },
   phone: {
     label: "Số điện thoại",
-    placeholder: "0123456789",
+    placeholder: "0353788878",
     required: true
   },
   company: {

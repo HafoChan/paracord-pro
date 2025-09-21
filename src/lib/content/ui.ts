@@ -47,7 +47,12 @@ export const FOOTER_CONTENT = {
     prefix: "©",
     suffix: "Tất cả quyền được bảo lưu."
   },
-  designCredit: "Thiết kế bởi Paracord Pro",
+  designCredit: "Thiết kế bởi: Son Hao Nguyen",
+  designCreditUrl: "https://mail.google.com/mail/?view=cm&to=nshao159@gmail.com",
+  designCreditZalo: "https://zalo.me/0353929144",
+  designCreditSendEmail: "Gửi Email",
+  designCreditChatZalo: "Chat Zalo",
+  designCreditTitle: "Liên hệ với nhà thiết kế:",
   status: {
     indicator: "Đang hoạt động"
   },

@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { Facebook, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
 import { COMPANY_INFO } from "@/lib/constants";
 import { FOOTER_CONTENT, NAVIGATION_CONTENT } from "@/lib/content";
+import { useState, useRef, useEffect } from "react";
 
 // Define TypeScript interfaces (if using TypeScript)
 interface NavigationItem {
@@ -13,6 +16,20 @@ interface NavigationItem {
 const CURRENT_YEAR = new Date().getFullYear();
 
 export function Footer() {
+  const [showContactOptions, setShowContactOptions] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowContactOptions(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <div className="px-12">
       {/* Footer Divider */}
@@ -130,7 +147,46 @@ export function Footer() {
               {FOOTER_CONTENT.copyright.prefix} {CURRENT_YEAR} {COMPANY_INFO.name}. {FOOTER_CONTENT.copyright.suffix}
             </p>
             <div className="flex items-center gap-4 sm:gap-6 text-sm text-slate-500">
-              <span>{FOOTER_CONTENT.designCredit}</span>
+              <div className="relative" ref={dropdownRef}>
+                <button 
+                  onClick={() => setShowContactOptions(!showContactOptions)}
+                  className="hover:text-slate-700 transition-colors cursor-pointer"
+                >
+                  {FOOTER_CONTENT.designCredit}
+                </button>
+                
+                {/* Contact Options Dropdown */}
+                {showContactOptions && (
+                  <div className="absolute bottom-full mb-2 right-0 bg-white border border-slate-200 rounded-lg shadow-lg p-2 min-w-[200px] z-50">
+                    <div className="text-xs text-slate-600 mb-2 font-medium">{FOOTER_CONTENT.designCreditTitle}</div>
+                    
+                    {/* Email Option */}
+                    <a 
+                      href={FOOTER_CONTENT.designCreditUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 p-2 rounded-md hover:bg-slate-50 transition-colors text-slate-700 hover:text-slate-900"
+                      onClick={() => setShowContactOptions(false)}
+                    >
+                      <Mail className="w-4 h-4 text-blue-500" />
+                      <span className="text-sm">{FOOTER_CONTENT.designCreditSendEmail}</span>
+                    </a>
+                    
+                    {/* Zalo Option */}
+                    <a 
+                      href={FOOTER_CONTENT.designCreditZalo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 p-2 rounded-md hover:bg-slate-50 transition-colors text-slate-700 hover:text-slate-900"
+                      onClick={() => setShowContactOptions(false)}
+                    >
+                      <MessageCircle className="w-4 h-4 text-blue-600" />
+                      <span className="text-sm">{FOOTER_CONTENT.designCreditChatZalo}</span>
+                    </a>
+                  </div>
+                )}
+              </div>
+              
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" aria-hidden="true" />
                 <span>{FOOTER_CONTENT.status.indicator}</span>

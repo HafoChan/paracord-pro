@@ -109,7 +109,7 @@ export function ContactInfo() {
           </div>
           <div className="flex justify-between">
             <span className="text-slate-600">Mã số thuế:</span>
-            <span className="font-medium">0123456789</span>
+            <span className="font-medium">0317581385</span>
           </div>
           <div className="flex justify-between">
             <span className="text-slate-600">Ngành nghề:</span>
