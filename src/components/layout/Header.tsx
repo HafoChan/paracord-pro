@@ -7,6 +7,8 @@ import { PhoneIcon, ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline"
 import { Button } from "@/components/ui/Button";
 import { COMPANY_INFO } from "@/lib/constants";
 import { NAVIGATION_CONTENT } from "@/lib/content";
+import { LOGO_ASSETS } from "@/lib/content/assets";
+import Image from "next/image";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,8 +37,14 @@ export function Header() {
           {/* Compact Logo */}
           <Link href="/" className="flex items-center space-x-2.5 group transition-all duration-300 hover:scale-105">
             <div className="relative">
-              <div className="h-10 w-10 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:rotate-3">
-                <span className="text-white font-bold text-base group-hover:scale-110 transition-transform duration-300">PP</span>
+              <div className="h-10 w-10 bg-white rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:rotate-3 overflow-hidden">
+                <Image 
+                  src={LOGO_ASSETS.main}
+                  alt="MINH TIEN STRING CO., LTD Logo"
+                  width={32}
+                  height={32}
+                  className="object-contain group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
               {/* Animated ring */}
               <div className="absolute inset-0 rounded-xl border-2 border-blue-400/30 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"></div>

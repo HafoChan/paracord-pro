@@ -114,6 +114,7 @@ export const PLACEHOLDER_IMAGES = {
 // Icon Assets
 export const ICONS = {
   logo: {
+    main: '/MinhTien_logo.png',
     favicon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
     android: '/android-chrome-192x192.png'

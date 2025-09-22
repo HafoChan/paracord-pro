@@ -6,7 +6,7 @@
 // Header Content
 export const HEADER_CONTENT = {
   logo: {
-    shortName: "PP",
+    shortName: "MT",
     tagline: "Chất lượng cao"
   },
   phone: {

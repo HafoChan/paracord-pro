@@ -4,7 +4,9 @@ import Link from "next/link";
 import { Facebook, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
 import { COMPANY_INFO } from "@/lib/constants";
 import { FOOTER_CONTENT, NAVIGATION_CONTENT } from "@/lib/content";
+import { LOGO_ASSETS } from "@/lib/content/assets";
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 
 // Define TypeScript interfaces (if using TypeScript)
 interface NavigationItem {
@@ -47,8 +49,14 @@ export function Footer() {
           {/* Company Info */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-2 animate-fade-in-up">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="h-12 w-12 bg-navy-900 rounded-xl flex items-center justify-center shadow-soft">
-                <span className="text-white font-bold text-lg">PP</span>
+              <div className="h-12 w-12 bg-white rounded-xl flex items-center justify-center shadow-soft overflow-hidden">
+                <Image 
+                  src={LOGO_ASSETS.main}
+                  alt="MINH TIEN STRING CO., LTD Logo"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
               </div>
               <div>
                 <div className="font-bold text-xl sm:text-2xl text-slate-900">

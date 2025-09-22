@@ -58,6 +58,7 @@ export const DEFAULT_PRODUCT_IMAGES = {
 
 // Company Logo Assets
 export const LOGO_ASSETS = {
+  main: "/MinhTien_logo.png",
   favicon: "/favicon.ico",
   // Additional logo variations would go here
 };
