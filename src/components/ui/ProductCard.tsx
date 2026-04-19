@@ -45,7 +45,7 @@ export function ProductCard({
   if (viewMode === "list") {
     return (
       <Card 
-        className="group overflow-hidden hover:shadow-xl transition-all duration-300 border border-slate-100 bg-white hover:bg-blue-50/10 min-h-[200px] flex flex-col sm:flex-row"
+        className="group overflow-hidden hover:shadow-xl transition-all duration-300 border border-slate-100 bg-white hover:bg-accent-50/10 min-h-[200px] flex flex-col sm:flex-row"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -81,14 +81,14 @@ export function ProductCard({
                 <div className="flex items-center gap-2 mb-3">
                   <Badge 
                     variant="secondary" 
-                    className="text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100 transition-colors duration-300"
+                    className="text-xs bg-accent-50 text-accent-700 border-accent-200 hover:bg-accent-100 transition-colors duration-300"
                   >
                     {categoryLabels[product.category as keyof typeof categoryLabels]}
                   </Badge>
                 </div>
                 
                 <h3 className={`font-bold text-slate-900 mb-2 transition-all duration-300 ${
-                  isHovered ? 'text-blue-600 text-xl' : 'text-lg'
+                  isHovered ? 'text-accent-600 text-xl' : 'text-lg'
                 }`}>
                   {product.name}
                 </h3>
@@ -112,8 +112,8 @@ export function ProductCard({
                             onClick={() => setSelectedColorIndex(index)}
                             className={`group/color w-6 h-6 rounded-full border-2 transition-all duration-300 hover:scale-125 ${
                               selectedColorIndex === index 
-                                ? 'border-blue-500 shadow-lg' 
-                                : 'border-slate-300 hover:border-blue-400'
+                                ? 'border-accent-500 shadow-lg' 
+                                : 'border-slate-300 hover:border-accent-400'
                             }`}
                             style={{ backgroundColor: color.hex }}
                             title={color.name}
@@ -146,7 +146,7 @@ export function ProductCard({
               <div className="text-right ml-4 min-w-[140px] flex flex-col justify-between">
                 <div className="mb-3">
                   <p className={`font-bold transition-all duration-300 ${
-                    isHovered ? 'text-blue-600 text-xl' : 'text-slate-900 text-lg'
+                    isHovered ? 'text-accent-600 text-xl' : 'text-slate-900 text-lg'
                   }`}>
                     {product.priceRange}
                   </p>
@@ -156,7 +156,7 @@ export function ProductCard({
                 <div className="space-y-2 mt-auto">
                   <Button 
                     size="sm" 
-                    className="w-full group relative bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"
+                    className="w-full group relative bg-accent-600 hover:bg-accent-700 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"
                     asChild
                   >
                     <Link href={`/products/${product.id}`} className="flex items-center justify-center gap-2 relative z-10">
@@ -169,7 +169,7 @@ export function ProductCard({
                   <Button 
                     size="sm" 
                     variant="outline" 
-                    className="w-full border-2 border-green-300 hover:border-green-400 hover:bg-green-50 hover:text-green-600 transition-all duration-300 hover:scale-105 group"
+                    className="w-full border-2 border-primary-300 hover:border-primary-400 hover:bg-primary-50 hover:text-primary-700 transition-all duration-300 hover:scale-105 group"
                   >
                     <ShoppingCart className="h-4 w-4 mr-2 group-hover:animate-bounce" />
                     <span>Thêm giỏ hàng</span>
@@ -220,7 +220,7 @@ export function ProductCard({
           <div className="absolute bottom-4 left-4 right-4">
             <Button 
               size="sm" 
-              className="w-full bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 relative overflow-hidden"
+              className="w-full group bg-accent-600 hover:bg-accent-700 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 <ShoppingCart className="h-4 w-4" />
@@ -241,14 +241,14 @@ export function ProductCard({
         <div className="flex items-center justify-between mb-3">
           <Badge 
             variant="secondary" 
-            className="text-xs bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100 transition-colors duration-300"
+            className="text-xs bg-accent-50 text-accent-700 border-accent-200 hover:bg-accent-100 transition-colors duration-300"
           >
             {categoryLabels[product.category as keyof typeof categoryLabels]}
           </Badge>
         </div>
         
         <CardTitle className={`leading-tight mb-2 transition-all duration-300 ${
-          isHovered ? 'text-blue-600 text-xl' : 'text-slate-900 text-lg'
+          isHovered ? 'text-accent-600 text-xl' : 'text-slate-900 text-lg'
         }`}>
           {product.name}
         </CardTitle>
@@ -274,8 +274,8 @@ export function ProductCard({
                     onClick={() => setSelectedColorIndex(index)}
                     className={`w-6 h-6 rounded-full border-2 transition-all duration-300 hover:scale-125 ${
                       selectedColorIndex === index 
-                        ? 'border-blue-500 shadow-lg' 
-                        : 'border-slate-300 hover:border-blue-400'
+                        ? 'border-accent-500 shadow-lg' 
+                        : 'border-slate-300 hover:border-accent-400'
                     }`}
                     style={{ backgroundColor: color.hex }}
                     title={color.name}
@@ -298,7 +298,7 @@ export function ProductCard({
               <span className="text-slate-600 capitalize font-medium group-hover/spec:text-slate-800 transition-colors">
                 {key}:
               </span>
-              <span className="text-slate-900 bg-slate-50 px-2 py-1 rounded-md group-hover/spec:bg-blue-50 group-hover/spec:text-blue-700 transition-all">
+              <span className="text-slate-900 bg-slate-50 px-2 py-1 rounded-md group-hover/spec:bg-accent-50 group-hover/spec:text-accent-700 transition-all">
                 {value}
               </span>
             </div>
@@ -309,7 +309,7 @@ export function ProductCard({
         <div className="pt-3 border-t border-slate-100 mt-auto">
           <div className="flex items-center justify-between mb-4">
             <p className={`font-bold transition-all duration-300 ${
-              isHovered ? 'text-blue-600 text-lg' : 'text-slate-900'
+              isHovered ? 'text-accent-600 text-lg' : 'text-slate-900'
             }`}>
               {product.priceRange}
             </p>
@@ -318,7 +318,7 @@ export function ProductCard({
           <div className="space-y-2">
             <Button 
               size="sm" 
-              className="w-full group relative bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"
+              className="group bg-accent-600 hover:bg-accent-700 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden"
               asChild
             >
               <Link href={`/products/${product.id}`} className="flex items-center justify-center gap-2 relative z-10">

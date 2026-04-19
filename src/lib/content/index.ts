@@ -18,6 +18,9 @@ export * from './contact';
 // Products content
 export * from './products';
 
+// Categories content
+export * from './categories';
+
 // UI content
 export * from './ui';
 

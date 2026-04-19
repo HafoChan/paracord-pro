@@ -188,8 +188,8 @@ export function ProductGrid() {
               onClick={() => setViewMode("grid")}
               className={`rounded-none transition-all duration-300 ${
                 viewMode === "grid" 
-                  ? "bg-blue-900 text-white shadow-md" 
-                  : "hover:bg-blue-50 hover:text-blue-600"
+                  ? "bg-accent-700 text-white shadow-md" 
+                  : "hover:bg-accent-50 hover:text-accent-700"
               }`}
             >
               <Grid3x3 className="h-4 w-4" />
@@ -200,8 +200,8 @@ export function ProductGrid() {
               onClick={() => setViewMode("list")}
               className={`rounded-none transition-all duration-300 ${
                 viewMode === "list" 
-                  ? "bg-blue-900 text-white shadow-md" 
-                  : "hover:bg-blue-50 hover:text-blue-600"
+                  ? "bg-accent-700 text-white shadow-md" 
+                  : "hover:bg-accent-50 hover:text-accent-700"
               }`}
             >
               <List className="h-4 w-4" />
@@ -214,7 +214,7 @@ export function ProductGrid() {
               variant="outline"
               size="sm"
               onClick={() => setShowSortOptions(!showSortOptions)}
-              className="flex items-center gap-2 border-2 border-slate-200 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 shadow-sm hover:shadow-md"
+              className="flex items-center gap-2 border-2 border-slate-200 hover:border-accent-300 hover:bg-accent-50 hover:text-accent-700 transition-all duration-300 shadow-sm hover:shadow-md"
             >
               <span className="hidden sm:inline font-medium">{SEARCH_FILTER.sort.label}</span>
               <span className="font-medium">{sortOptions.find(opt => opt.value === sortBy)?.label}</span>
@@ -232,8 +232,8 @@ export function ProductGrid() {
                       setSortBy(option.value);
                       setShowSortOptions(false);
                     }}
-                    className={`w-full text-left px-4 py-3 text-sm transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 flex items-center justify-between group ${
-                      sortBy === option.value ? "bg-blue-900 text-white font-medium" : ""
+                    className={`w-full text-left px-4 py-3 text-sm transition-all duration-200 hover:bg-accent-50 hover:text-accent-700 flex items-center justify-between group ${
+                      sortBy === option.value ? "bg-accent-700 text-white font-medium" : ""
                     }`}
                     style={{ animationDelay: `${index * 0.05}s` }}
                   >
@@ -304,7 +304,7 @@ export function ProductGrid() {
             <Button 
               variant="outline" 
               size="lg"
-              className="group relative border-2 border-slate-300 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl px-8 py-4 overflow-hidden"
+              className="group relative border-2 border-slate-300 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl px-8 py-4 overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2 font-semibold">
                 <Grid3x3 className="h-5 w-5 group-hover:animate-pulse" />

@@ -4,6 +4,7 @@ import { ContactHero } from "@/components/sections/ContactHero";
 import { ContactInfo } from "@/components/sections/ContactInfo";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { LocationMap } from "@/components/sections/LocationMap";
+import { VideoSection } from "@/components/ui/VideoSection";
 
 export const metadata: Metadata = {
   title: "Liên hệ - MINH TIEN STRING CO., LTD | Tư vấn và báo giá",
@@ -15,6 +16,16 @@ export default function ContactPage() {
   return (
     <MainLayout>
       <ContactHero />
+      
+      {/* Video hướng dẫn - Compact style */}
+      <VideoSection
+        videoId="kffacxfA7G4"
+        title="Quy trình tư vấn và hỗ trợ"
+        description="Gặp gỡ đội ngũ chuyên nghiệp và tìm hiểu cách chúng tôi hỗ trợ bạn"
+        variant="compact"
+        showStats={false}
+      />
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-16 py-8 sm:py-12 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12">
           <div className="lg:col-span-1">

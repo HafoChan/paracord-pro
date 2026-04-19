@@ -69,7 +69,7 @@ export function HeroSlider() {
               {/* Modern Brand Header */}
               <div className="flex items-center justify-center lg:justify-start mb-8 hero-animate-in">
                 <div className="glass-card flex items-center gap-4 rounded-3xl p-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-900 rounded-2xl flex items-center justify-center shadow-lg">
+                  <div className="w-12 h-12 bg-accent-600 rounded-2xl flex items-center justify-center shadow-lg">
                     <Factory className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -121,7 +121,7 @@ export function HeroSlider() {
                       key={index}
                       className="glass-card group px-3 sm:px-4 py-2 text-white font-medium transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center gap-2 sm:gap-3 rounded-2xl"
                     >
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-900 rounded-xl flex items-center justify-center shadow-lg">
+                      <div className="w-10 h-10 bg-accent-600 rounded-xl flex items-center justify-center shadow-lg">
                         <IconComponent className="h-5 w-5 text-white" />
                       </div>
                       <span className="text-sm sm:text-base font-semibold">{feature.text}</span>

@@ -46,17 +46,17 @@ export const ABOUT_SECTION = {
     {
       title: "Chất lượng đảm bảo",
       description: "Kiểm tra nghiêm ngặt từng công đoạn sản xuất",
-      color: "from-green-500 to-green-600"
+      color: "bg-accent-600"
     },
     {
       title: "Giao hàng nhanh", 
       description: "Phủ sóng toàn quốc, giao hàng 1-3 ngày",
-      color: "from-blue-500 to-blue-600"
+      color: "bg-primary-700"
     },
     {
       title: "Tư vấn chuyên nghiệp",
       description: "Hỗ trợ giải pháp tối ưu cho từng dự án",
-      color: "from-purple-500 to-purple-600"
+      color: "bg-accent-600"
     }
   ],
   cta: {

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { ProductDetail } from "@/components/sections/ProductDetail";
 import { getProductImage } from "@/lib/assets";
+import { VideoSection } from "@/components/ui/VideoSection";
 
 // Mock product data - in real app this would come from database
 const products = [
@@ -81,9 +82,39 @@ export default async function ProductDetailPage({ params }: Props) {
     notFound();
   }
 
+  // Video data theo category
+  const categoryVideos: Record<string, { id: string; title: string; description: string }> = {
+    paracord: {
+      id: "uelHwf8o7_U",
+      title: "Hướng dẫn sử dụng Dây dù",
+      description: "Xem cách sử dụng và ứng dụng dây dù trong các dự án thực tế"
+    },
+    eband: {
+      id: "kJQP7kiw5Fk",
+      title: "Hướng dẫn sử dụng Dây đai thun",
+      description: "Tìm hiểu cách sử dụng dây đai thun hiệu quả"
+    },
+    service: {
+      id: "YQHsXMglC9A",
+      title: "Quy trình đặt hàng dịch vụ",
+      description: "Hướng dẫn đặt hàng và sử dụng dịch vụ gia công"
+    }
+  };
+
+  const videoData = categoryVideos[product.category] || categoryVideos.paracord;
+
   return (
     <MainLayout>
       <ProductDetail product={product} />
+      
+      {/* Video hướng dẫn sử dụng - Minimal style */}
+      <VideoSection
+        videoId={videoData.id}
+        title={videoData.title}
+        description={videoData.description}
+        variant="minimal"
+        showStats={false}
+      />
     </MainLayout>
   );
 }
