@@ -8,7 +8,8 @@ import {
   CheckCircleIcon as CheckCircleIconSolid,
   InformationCircleIcon,
   CheckIcon,
-  XMarkIcon
+  XMarkIcon,
+  ChevronDownIcon
 } from "@heroicons/react/24/solid";
 import {
   BeakerIcon,
@@ -111,6 +112,7 @@ const FEATURES = [
 
 
 export function ProductCustomization() {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [selectedMaterial, setSelectedMaterial] = useState("");
   const [selectedShape, setSelectedShape] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
@@ -143,31 +145,58 @@ export function ProductCustomization() {
   const isFormComplete = selectedMaterial && selectedShape && selectedSize && selectedColors.length > 0;
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 via-white to-accent-50/30 relative overflow-hidden">
+    <section className="py-12 bg-gradient-to-br from-slate-50 via-white to-accent-50/30 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent-200/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-200/20 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-white shadow-lg text-accent-700 px-5 py-2.5 rounded-full text-sm font-semibold mb-6 border-2 border-accent-200">
-            <SparklesIcon className="h-5 w-5" />
-            <span>Công cụ tùy chỉnh sản phẩm</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6 leading-tight">
-            Thiết kế sản phẩm <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-accent-600 to-primary-600">theo yêu cầu</span>
-          </h2>
-          
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Tùy chỉnh vật liệu, kích thước, màu sắc và tính năng để tạo ra sản phẩm hoàn hảo cho nhu cầu của bạn
-          </p>
-        </div>
-
+        {/* Collapsible Header */}
         <div className="max-w-6xl mx-auto">
-          {/* Progress indicator */}
-          <div className="mb-8">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="w-full bg-white rounded-2xl shadow-xl border-2 border-accent-200 p-6 md:p-8 hover:shadow-2xl transition-all duration-300 group"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4 text-left flex-1">
+                <div className="w-14 h-14 bg-gradient-to-br from-accent-600 to-accent-700 rounded-xl flex items-center justify-center shadow-lg">
+                  <SparklesIcon className="h-7 w-7 text-white" />
+                </div>
+                <div>
+                  <div className="inline-flex items-center gap-2 text-accent-700 text-sm font-semibold mb-2">
+                    <span>Công cụ tùy chỉnh sản phẩm</span>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-1">
+                    Thiết kế sản phẩm theo yêu cầu
+                  </h2>
+                  <p className="text-slate-600 text-sm md:text-base">
+                    Tùy chỉnh vật liệu, kích thước, màu sắc và tính năng cho sản phẩm của bạn
+                  </p>
+                </div>
+              </div>
+              
+              <div className="ml-4 flex items-center gap-3">
+                {!isExpanded && (
+                  <span className="hidden md:inline-block text-sm font-semibold text-accent-700 bg-accent-50 px-4 py-2 rounded-lg">
+                    Nhấn để mở
+                  </span>
+                )}
+                <div className={`w-10 h-10 bg-accent-100 rounded-lg flex items-center justify-center transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
+                  <ChevronDownIcon className="h-6 w-6 text-accent-700" />
+                </div>
+              </div>
+            </div>
+          </button>
+
+          {/* Collapsible Content */}
+          <div 
+            className={`transition-all duration-500 ease-in-out overflow-hidden ${
+              isExpanded ? 'max-h-[10000px] opacity-100 mt-6' : 'max-h-0 opacity-0'
+            }`}
+          >
+          <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+            {/* Progress indicator */}
+            <div className="p-6 md:p-8 pb-0">
             <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-semibold text-slate-700">Tiến độ</span>
               <span className="text-sm font-bold text-accent-700">
@@ -180,10 +209,9 @@ export function ProductCustomization() {
                 style={{ width: `${([selectedMaterial, selectedShape, selectedSize, selectedColors.length > 0].filter(Boolean).length / 4) * 100}%` }}
               ></div>
             </div>
-          </div>
+            </div>
 
-          <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
-            <div className="p-6 md:p-8 space-y-8">
+            <div className="p-6 md:p-8 pt-4 space-y-8">
               
               {/* Step 1: Material Selection */}
               <div className="space-y-4">
@@ -550,7 +578,7 @@ export function ProductCustomization() {
             </div>
 
             {/* Summary & CTA */}
-            <div className="bg-gradient-to-r from-accent-600 to-accent-700 p-6 md:p-8">
+            <div className="bg-gradient-to-r from-accent-600 to-accent-700 p-6 md:p-8 mt-8">
               <div className="max-w-4xl mx-auto">
                 <h4 className="font-bold text-white text-xl mb-4 flex items-center gap-2">
                   <CheckCircleIconSolid className="h-6 w-6" />
@@ -607,6 +635,7 @@ export function ProductCustomization() {
                 )}
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

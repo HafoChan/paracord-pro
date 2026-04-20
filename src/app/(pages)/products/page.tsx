@@ -87,9 +87,6 @@ export default function ProductsPage() {
         badge={`Demo ${categoryDetail?.name}`}
       />
 
-      {/* Product Customization Tool */}
-      <ProductCustomization />
-
       {/* Products Grid */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-16">
@@ -142,6 +139,9 @@ export default function ProductsPage() {
           )}
         </div>
       </section>
+
+      {/* Product Customization Tool - Collapsible */}
+      <ProductCustomization />
 
       {/* Color Palette */}
       <ColorPalette />
