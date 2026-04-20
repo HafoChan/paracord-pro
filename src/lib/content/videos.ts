@@ -28,7 +28,7 @@ export const VIDEO_IDS = {
   // Trang About
   COMPANY_STORY: "CcNJaDuTgQ4",
   FACTORY_TOUR: "9bZkp7q19f0",
-  APPLICATION_CASE_STUDY: "M7lc1UVf-VE",
+  APPLICATION_CASE_STUDY: "82s8PRgYSRU", // Thay bằng video ID khác
   
   // Trang Contact
   CONTACT_GUIDE: "kffacxfA7G4",
