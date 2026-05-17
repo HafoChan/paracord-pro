@@ -1,18 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { Home } from "lucide-react";
 import { MainLayout } from "@/components/layout/MainLayout";
-import { ProductsHero } from "@/components/sections/ProductsHero";
-import { CategoryTabs } from "@/components/sections/CategoryTabs";
-import { CategoryIntro } from "@/components/sections/CategoryIntro";
+import { ProductSidebar } from "@/components/sections/ProductSidebar";
 import { ProductCard } from "@/components/ui/ProductCard";
-import { ProductCustomization } from "@/components/sections/ProductCustomization";
-import { ColorPalette } from "@/components/sections/ColorPalette";
-import { TechnicalSpecs } from "@/components/sections/TechnicalSpecs";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 import { PRODUCTS_DATA } from "@/lib/data/products";
 import { getCategoryDetail } from "@/lib/content/categories";
-import { VideoWithContent } from "@/components/sections/VideoWithContent";
 
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState("paracord");
@@ -25,133 +21,86 @@ export default function ProductsPage() {
   // Lấy thông tin chi tiết category
   const categoryDetail = getCategoryDetail(activeCategory);
 
-  // Video data theo category
-  const categoryVideos: Record<string, { id: string; title: string; description: string; features: string[] }> = {
-    paracord: {
-      id: "uelHwf8o7_U",
-      title: "Dây dù (Paracord) - Ứng dụng đa dạng",
-      description: "Dây dù chất lượng cao với độ bền vượt trội, được sử dụng rộng rãi trong nhiều ngành công nghiệp.",
-      features: [
-        "Chịu lực tốt, độ bền cao",
-        "Đa dạng màu sắc và kích thước",
-        "Ứng dụng trong may mặc, balo, thể thao",
-        "Có thể tùy chỉnh theo yêu cầu"
-      ]
-    },
-    eband: {
-      id: "kJQP7kiw5Fk",
-      title: "Dây đai thun - Co giãn vượt trội",
-      description: "Dây đai thun với khả năng co giãn tốt, phù hợp cho các ứng dụng cần độ đàn hồi cao.",
-      features: [
-        "Co giãn tốt, đàn hồi cao",
-        "Độ bền và tuổi thọ cao",
-        "Nhiều độ rộng và độ dày",
-        "Ứng dụng trong y tế, thời trang"
-      ]
-    },
-    service: {
-      id: "YQHsXMglC9A",
-      title: "Dịch vụ gia công chuyên nghiệp",
-      description: "Chúng tôi cung cấp dịch vụ gia công, tư vấn thiết kế và sản xuất theo yêu cầu khách hàng.",
-      features: [
-        "Tư vấn thiết kế miễn phí",
-        "Gia công theo mẫu",
-        "Giao hàng nhanh chóng",
-        "Hỗ trợ kỹ thuật 24/7"
-      ]
-    }
-  };
-
-  const currentVideo = categoryVideos[activeCategory] || categoryVideos.paracord;
-
   return (
     <MainLayout>
-      <ProductsHero />
-      
-      {/* Category Tabs */}
-      <CategoryTabs 
-        activeCategory={activeCategory}
-        onCategoryChange={setActiveCategory}
-      />
 
-      {/* Category Introduction */}
-      {categoryDetail && <CategoryIntro category={categoryDetail} />}
+      {/* Page Title */}
+      <div className="bg-white border-b border-slate-100 py-5">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <h1
+            className="font-bold uppercase tracking-widest"
+            style={{ color: "#2B6A8E", fontSize: "1.5rem", lineHeight: "1.3" }}
+          >
+            {categoryDetail?.name || "Sản phẩm"}
+          </h1>
+        </div>
+      </div>
 
-      {/* Video demo theo category - layout linh hoạt */}
-      <VideoWithContent
-        videoId={currentVideo.id}
-        title={currentVideo.title}
-        description={currentVideo.description}
-        features={currentVideo.features}
-        layout={activeCategory === "eband" ? "right" : "left"}
-        badge={`Demo ${categoryDetail?.name}`}
-      />
-
-      {/* Products Grid */}
-      <section className="py-12 bg-white">
+      {/* Main Content: Sidebar + Product Grid */}
+      <section className="bg-white py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-16">
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-primary-900 mb-2">
-              Sản phẩm {categoryDetail?.name}
-            </h3>
-            <p className="text-slate-600">
-              Hiển thị {filteredProducts.length} sản phẩm
-            </p>
-          </div>
-
-          {/* Products Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProducts.map((product, index) => (
-              <div 
-                key={product.id}
-                className="animate-fade-in-up"
-                style={{ 
-                  animationDelay: `${index * 0.1}s`,
-                  animationFillMode: 'both'
-                }}
-              >
-                <ProductCard 
-                  product={product}
-                  viewMode="grid"
-                  showFavorite={false}
-                  showShare={true}
-                  onShare={(product) => {
-                    if (navigator.share) {
-                      navigator.share({
-                        title: product.name,
-                        text: product.description,
-                        url: `/products/${product.id}`
-                      });
-                    }
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Empty state */}
-          {filteredProducts.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-slate-500 text-lg">
-                Chưa có sản phẩm trong danh mục này
-              </p>
+          <div className="flex flex-col lg:flex-row gap-8">
+            
+            {/* Sidebar */}
+            <div className="w-full lg:w-64 flex-shrink-0">
+              <ProductSidebar
+                activeCategory={activeCategory}
+                onCategoryChange={setActiveCategory}
+              />
             </div>
-          )}
+
+            {/* Product Grid */}
+            <div className="flex-1 min-w-0">
+              {/* Result count */}
+              <div className="flex items-center justify-between mb-5 pb-3 border-b border-slate-100">
+                <p className="text-sm text-slate-500">
+                  Hiển thị{" "}
+                  <span className="font-semibold text-slate-700">
+                    {filteredProducts.length}
+                  </span>{" "}
+                  sản phẩm trong{" "}
+                  <span className="font-semibold text-accent-600">
+                    {categoryDetail?.name}
+                  </span>
+                </p>
+              </div>
+
+              {/* Grid */}
+              {filteredProducts.length > 0 ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-4">
+                  {filteredProducts.map((product, index) => (
+                    <div
+                      key={product.id}
+                      className="animate-fade-in-up"
+                      style={{
+                        animationDelay: `${index * 0.08}s`,
+                        animationFillMode: "both",
+                      }}
+                    >
+                      <ProductCard product={product} viewMode="grid" />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-16 text-center">
+                  <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+                    <svg className="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                  </div>
+                  <p className="text-slate-500 text-base font-medium">
+                    Chưa có sản phẩm trong danh mục này
+                  </p>
+                  <p className="text-slate-400 text-sm mt-1">
+                    Vui lòng chọn danh mục khác hoặc liên hệ để được tư vấn
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Product Customization Tool - Collapsible */}
-      <ProductCustomization />
-
-      {/* Color Palette */}
-      <ColorPalette />
-
-      {/* Technical Specifications */}
-      <TechnicalSpecs />
-
-      {/* Contact CTA */}
-      <ContactCTA />
     </MainLayout>
   );
 }
-
