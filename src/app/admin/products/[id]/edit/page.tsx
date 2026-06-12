@@ -5,11 +5,26 @@ import { useParams } from 'next/navigation';
 import { useAdminAuth } from '@/lib/admin-auth-context';
 import ProductForm from '@/components/admin/ProductForm';
 
+interface ProductFormData {
+  id: string;
+  name: string;
+  slug: string;
+  size: string;
+  category: string;
+  description: string;
+  priceRange: string;
+  colors: string;
+  images: string[];
+  videoUrl: string;
+  isFeatured: boolean;
+  specifications: Record<string, string>;
+}
+
 export default function EditProductPage() {
   const { id } = useParams();
   const { token } = useAdminAuth();
   const [loading, setLoading] = useState(true);
-  const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState<ProductFormData | null>(null);
   const [error, setError] = useState('');
 
   useEffect(() => {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useAdminAuth } from '@/lib/admin-auth-context';
 import Link from 'next/link';
-import { Plus, Search, Edit2, Trash2, ChevronLeft, ChevronRight, Star, Image as ImageIcon } from 'lucide-react';
+import { Plus, Search, Edit2, Trash2, ChevronLeft, ChevronRight, Star, Image as ImageIcon, Package } from 'lucide-react';
 
 interface ProductRow {
   id: string;
