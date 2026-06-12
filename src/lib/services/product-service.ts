@@ -4,8 +4,25 @@ import { PRODUCTS_DATA } from '@/lib/data/products';
 
 /**
  * Product Service
- * Fetches products from Supabase, falls back to local data if needed
+ * Fetches products from Supabase with in-memory caching, falls back to local data if needed
  */
+
+// Simple in-memory cache to prevent redundant fetches
+const cache = new Map<string, { data: Product[]; timestamp: number }>();
+const CACHE_TTL = 60_000; // 60 seconds
+
+function getCached(key: string): Product[] | null {
+  const entry = cache.get(key);
+  if (entry && Date.now() - entry.timestamp < CACHE_TTL) {
+    return entry.data;
+  }
+  cache.delete(key);
+  return null;
+}
+
+function setCache(key: string, data: Product[]): void {
+  cache.set(key, { data, timestamp: Date.now() });
+}
 
 // Map database row to Product interface
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,6 +49,9 @@ function mapDatabaseRowToProduct(row: any): Product {
  * Get all products from Supabase or fallback to local data
  */
 export async function getAllProducts(): Promise<Product[]> {
+  const cached = getCached('all');
+  if (cached) return cached;
+
   try {
     const { data, error } = await supabase
       .from('products')
@@ -48,7 +68,9 @@ export async function getAllProducts(): Promise<Product[]> {
       return PRODUCTS_DATA;
     }
 
-    return data.map(mapDatabaseRowToProduct);
+    const products = data.map(mapDatabaseRowToProduct);
+    setCache('all', products);
+    return products;
   } catch (error) {
     console.warn('Error fetching products:', error);
     return PRODUCTS_DATA;
@@ -61,6 +83,10 @@ export async function getAllProducts(): Promise<Product[]> {
 export async function getProductsByCategory(
   category: ProductCategoryType
 ): Promise<Product[]> {
+  const cacheKey = `category:${category}`;
+  const cached = getCached(cacheKey);
+  if (cached) return cached;
+
   try {
     const { data, error } = await supabase
       .from('products')
@@ -74,7 +100,9 @@ export async function getProductsByCategory(
     }
 
     if (!data) return [];
-    return data.map(mapDatabaseRowToProduct);
+    const products = data.map(mapDatabaseRowToProduct);
+    setCache(cacheKey, products);
+    return products;
   } catch (error) {
     console.warn('Error fetching products by category:', error);
     return PRODUCTS_DATA.filter((p) => p.category === category);

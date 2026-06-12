@@ -12,14 +12,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://minhtienstring.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "MINH TIEN STRING CO., LTD - Sản xuất dây dù, dây đai thun chất lượng cao",
   description: "Công ty TNHH sản xuất dây Minh Tiến chuyên sản xuất và gia công dây dù, dây đai thun cho ngành may mặc, balo túi xách, thể thao. Hotline: 0353788878.",
   keywords: ["dây dù", "dây đai thun", "paracord", "eband", "gia công dây", "sản xuất dây", "may mặc", "balo túi xách", "Minh Tiến", "Củ Chi"],
   authors: [{ name: "MINH TIEN STRING CO., LTD" }],
   icons: {
-    icon: "/MinhTien_logo.png",
-    apple: "/MinhTien_logo.png",
+    icon: "/MinhTien_logo_square.png",
+    shortcut: "/favicon.png",
+    apple: "/MinhTien_logo_square.png",
   },
   openGraph: {
     title: "MINH TIEN STRING CO., LTD - Sản xuất dây dù, dây đai thun chất lượng cao",
@@ -28,9 +32,9 @@ export const metadata: Metadata = {
     locale: "vi_VN",
     images: [
       {
-        url: "/MinhTien_logo.png",
-        width: 1200,
-        height: 630,
+        url: "/MinhTien_logo_square.png",
+        width: 256,
+        height: 256,
         alt: "MINH TIEN STRING CO., LTD Logo",
       },
     ],
