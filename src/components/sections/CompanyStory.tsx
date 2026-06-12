@@ -1,131 +1,144 @@
-import { Calendar, Target, Award, Users, Trophy, Handshake, Zap, Lightbulb } from "lucide-react";
+import { Trophy, Handshake, Zap, Lightbulb, Calendar, Target, Award, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
+import { CORE_VALUES } from "@/lib/content";
 
-const milestones = [
+// Icon mapping for values
+const valueIcons = {
+  "Chất lượng": Trophy,
+  "Uy tín": Handshake,
+  "Chuyên nghiệp": Zap,
+  "Sáng tạo": Lightbulb
+};
+
+const MILESTONES = [
   {
     year: "2014",
     title: "Thành lập công ty",
-    description: "Bắt đầu với xưởng sản xuất nhỏ, chuyên về dây dù cơ bản",
-    icon: Calendar
+    description: "Khởi đầu với xưởng sản xuất nhỏ, 5 nhân viên và quyết tâm mang đến sản phẩm chất lượng",
+    icon: Calendar,
+    color: "bg-accent-600"
   },
   {
-    year: "2017", 
+    year: "2017",
     title: "Mở rộng sản xuất",
-    description: "Đầu tư máy móc hiện đại, mở rộng sang dây đai thun",
-    icon: Target
+    description: "Đầu tư máy móc hiện đại, tăng công suất lên 50,000m/tháng, mở rộng đội ngũ lên 15 người",
+    icon: Target,
+    color: "bg-primary-700"
   },
   {
     year: "2020",
-    title: "Chứng nhận chất lượng",
-    description: "Đạt các chứng nhận ISO, xuất khẩu quốc tế",
-    icon: Award
+    title: "Đạt chứng nhận chất lượng",
+    description: "Đạt chứng nhận ISO 9001:2015, khẳng định cam kết về chất lượng và quy trình sản xuất",
+    icon: Award,
+    color: "bg-primary-600"
   },
   {
     year: "2024",
-    title: "Phát triển bền vững",
-    description: "500+ khách hàng tin tưởng, đội ngũ 50+ nhân viên",
-    icon: Users
-  }
-];
-
-const values = [
-  {
-    title: "Chất lượng",
-    description: "Cam kết mang đến sản phẩm chất lượng cao nhất với quy trình kiểm soát nghiêm ngặt",
-    icon: Trophy
-  },
-  {
-    title: "Uy tín", 
-    description: "Xây dựng mối quan hệ lâu dài với khách hàng dựa trên sự tin tưởng và minh bạch",
-    icon: Handshake
-  },
-  {
-    title: "Chuyên nghiệp",
-    description: "Đội ngũ có kinh nghiệm, luôn cập nhật công nghệ và xu hướng mới nhất",
-    icon: Zap
-  },
-  {
-    title: "Sáng tạo",
-    description: "Không ngừng nghiên cứu và phát triển các sản phẩm mới đáp ứng nhu cầu thị trường",
-    icon: Lightbulb
+    title: "Phát triển vững mạnh",
+    description: "Phục vụ 500+ khách hàng, công suất 100,000m/tháng, đội ngũ 30+ nhân viên chuyên nghiệp",
+    icon: TrendingUp,
+    color: "bg-accent-600"
   }
 ];
 
 export function CompanyStory() {
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        {/* Company story */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 text-center mb-8">
-            Câu chuyện của chúng tôi
-          </h2>
-          <div className="space-y-6 text-lg text-slate-600">
-            <p>
-              Paracord Pro ra đời từ niềm đam mê với chất lượng và mong muốn mang đến cho thị trường Việt Nam 
-              những sản phẩm dây dù, dây đai thun đạt tiêu chuẩn quốc tế. Bắt đầu từ một xưởng sản xuất nhỏ 
-              vào năm 2014, chúng tôi đã không ngừng phát triển và hoàn thiện.
-            </p>
-            <p>
-              Ngày nay, với đội ngũ hơn 50 nhân viên chuyên nghiệp, hệ thống máy móc hiện đại và quy trình 
-              sản xuất được chuẩn hóa, chúng tôi tự hào là đối tác tin cậy của hơn 500 doanh nghiệp trên 
-              toàn quốc và khu vực.
-            </p>
-            <p>
-              Chúng tôi tin rằng, thành công đến từ sự kết hợp hoàn hảo giữa chất lượng sản phẩm, 
-              dịch vụ khách hàng xuất sắc và tinh thần đổi mới không ngừng.
-            </p>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+        {/* Core values */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-slate-900 text-center mb-12">
+            {CORE_VALUES.title}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {CORE_VALUES.values.map((value, index) => {
+              const IconComponent = valueIcons[value.title as keyof typeof valueIcons];
+              return (
+                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="inline-flex items-center justify-center w-12 h-12 bg-slate-100 rounded-lg mb-4">
+                      <IconComponent className="h-6 w-6 text-slate-600" />
+                    </div>
+                    <h4 className="font-semibold text-lg text-slate-900 mb-3">
+                      {value.title}
+                    </h4>
+                    <p className="text-sm text-slate-600">
+                      {value.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
 
         {/* Timeline */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-slate-900 text-center mb-12">
-            Các mốc quan trọng
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-16">
-            {milestones.map((milestone, index) => (
-              <Card key={index} className="text-center">
-                <CardContent className="p-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-slate-100 rounded-lg mb-4">
-                    <milestone.icon className="h-6 w-6 text-slate-600" />
-                  </div>
-                  <div className="text-2xl font-bold text-slate-900 mb-2">
-                    {milestone.year}
-                  </div>
-                  <h4 className="font-semibold text-slate-900 mb-2">
-                    {milestone.title}
-                  </h4>
-                  <p className="text-sm text-slate-600">
-                    {milestone.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Core values */}
         <div>
-          <h3 className="text-2xl font-bold text-slate-900 text-center mb-12">
-            Giá trị cốt lõi
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-16">
-            {values.map((value, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-slate-100 rounded-lg mb-4">
-                    <value.icon className="h-6 w-6 text-slate-600" />
-                  </div>
-                  <h4 className="font-semibold text-lg text-slate-900 mb-3">
-                    {value.title}
-                  </h4>
-                  <p className="text-sm text-slate-600">
-                    {value.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+              Hành trình <span className="text-accent-600">phát triển</span>
+            </h3>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Từ một xưởng nhỏ đến đối tác tin cậy của hàng trăm doanh nghiệp
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-accent-200 via-primary-200 to-accent-200 hidden lg:block"></div>
+
+              {/* Milestones */}
+              <div className="space-y-12">
+                {MILESTONES.map((milestone, index) => {
+                  const IconComponent = milestone.icon;
+                  const isEven = index % 2 === 0;
+                  
+                  return (
+                    <div
+                      key={index}
+                      className={`relative flex items-center ${
+                        isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                      } flex-col gap-8`}
+                      style={{ 
+                        animationDelay: `${index * 0.2}s`,
+                        animationFillMode: 'both'
+                      }}
+                    >
+                      {/* Content */}
+                      <div className={`flex-1 ${isEven ? "lg:text-right" : "lg:text-left"} text-center lg:text-left`}>
+                        <div className={`inline-block bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-slate-100 ${
+                          isEven ? "lg:ml-auto" : "lg:mr-auto"
+                        }`}>
+                          <div className={`inline-flex items-center gap-2 ${milestone.color} text-white px-4 py-2 rounded-full text-sm font-bold mb-3`}>
+                            <IconComponent className="h-4 w-4" />
+                            <span>{milestone.year}</span>
+                          </div>
+                          
+                          <h3 className="font-bold text-slate-900 text-xl mb-2">
+                            {milestone.title}
+                          </h3>
+                          
+                          <p className="text-slate-600 leading-relaxed">
+                            {milestone.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Center icon */}
+                      <div className="relative z-10 flex-shrink-0">
+                        <div className={`w-16 h-16 ${milestone.color} rounded-full flex items-center justify-center shadow-xl`}>
+                          <IconComponent className="h-8 w-8 text-white" />
+                        </div>
+                      </div>
+
+                      {/* Spacer for alignment */}
+                      <div className="flex-1 hidden lg:block"></div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </div>

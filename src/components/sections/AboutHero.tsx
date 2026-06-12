@@ -1,20 +1,18 @@
-import { COMPANY_INFO } from "@/lib/constants";
+import { ABOUT_HERO } from "@/lib/content";
 
 export function AboutHero() {
   return (
-    <section className="bg-gradient-to-br from-slate-50 to-white py-20">
+    <section className="bg-white py-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-            Về {COMPANY_INFO.name}
+        <div className="max-w-5xl mx-auto text-center">
+          <h1 className="text-5xl md:text-5xl font-bold text-slate-900 mb-6">
+            {ABOUT_HERO.title}
           </h1>
           <p className="text-xl md:text-2xl text-slate-600 mb-8">
-            {COMPANY_INFO.slogan}
+            {ABOUT_HERO.subtitle}
           </p>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Chúng tôi tự hào là đơn vị tiên phong trong lĩnh vực sản xuất dây dù và dây đai thun tại Việt Nam. 
-            Với hơn 10 năm kinh nghiệm, chúng tôi cam kết mang đến những sản phẩm chất lượng cao nhất, 
-            phục vụ đa dạng các ngành công nghiệp từ thời trang, thể thao đến y tế.
+            {ABOUT_HERO.description}
           </p>
         </div>
       </div>

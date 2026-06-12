@@ -1,7 +1,8 @@
 import { MapPin, Phone, Mail, Clock, MessageCircle, Facebook } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { COMPANY_INFO, SOCIAL_LINKS } from "@/lib/constants";
+import { COMPANY_INFO } from "@/lib/constants";
+import { CONTACT_INFO, FOOTER_CONTENT } from "@/lib/content";
 
 export function ContactInfo() {
   return (
@@ -9,7 +10,7 @@ export function ContactInfo() {
       {/* Contact details */}
       <Card>
         <CardHeader>
-          <CardTitle>Thông tin liên hệ</CardTitle>
+          <CardTitle>{CONTACT_INFO.title}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-start gap-3">
@@ -49,11 +50,11 @@ export function ContactInfo() {
           <div className="flex items-start gap-3">
             <Clock className="h-5 w-5 text-slate-500 mt-0.5 flex-shrink-0" />
             <div>
-              <div className="font-medium text-slate-900 mb-1">Giờ làm việc</div>
+              <div className="font-medium text-slate-900 mb-1">{CONTACT_INFO.workingHours.title}</div>
               <div className="text-slate-600 space-y-1">
-                <div>Thứ 2 - Thứ 6: 8:00 - 17:30</div>
-                <div>Thứ 7: 8:00 - 12:00</div>
-                <div>Chủ nhật: Nghỉ</div>
+                {CONTACT_INFO.workingHours.schedule.map((time, index) => (
+                  <div key={index}>{time}</div>
+                ))}
               </div>
             </div>
           </div>
@@ -81,14 +82,14 @@ export function ContactInfo() {
           </Button>
           
           <Button variant="outline" className="w-full justify-start" asChild>
-            <a href={SOCIAL_LINKS.zalo} target="_blank" rel="noopener noreferrer" className="flex items-center">
+            <a href={FOOTER_CONTENT.socialMedia.links.zalo.url} target="_blank" rel="noopener noreferrer" className="flex items-center">
               <MessageCircle className="h-4 w-4 mr-2" />
               Chat Zalo
             </a>
           </Button>
           
           <Button variant="outline" className="w-full justify-start" asChild>
-            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center">
+            <a href={FOOTER_CONTENT.socialMedia.links.facebook.url} target="_blank" rel="noopener noreferrer" className="flex items-center">
               <Facebook className="h-4 w-4 mr-2" />
               Messenger
             </a>
@@ -108,7 +109,7 @@ export function ContactInfo() {
           </div>
           <div className="flex justify-between">
             <span className="text-slate-600">Mã số thuế:</span>
-            <span className="font-medium">0123456789</span>
+            <span className="font-medium">0317581385</span>
           </div>
           <div className="flex justify-between">
             <span className="text-slate-600">Ngành nghề:</span>

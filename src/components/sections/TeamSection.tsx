@@ -1,132 +1,133 @@
-import { Card, CardContent } from "@/components/ui/Card";
-import { Building2, Search, Beaker, TrendingUp } from "lucide-react";
+import { Users, Mail, Linkedin } from "lucide-react";
 
-const teamStats = [
+const TEAM_MEMBERS = [
   {
-    number: "50+",
-    label: "Nhân viên",
-    description: "Đội ngũ chuyên nghiệp và giàu kinh nghiệm"
+    name: "Nguyễn Văn A",
+    position: "Giám đốc điều hành",
+    description: "15 năm kinh nghiệm trong ngành dệt may và sản xuất dây",
+    image: "/assets/team/member1.jpg",
+    email: "director@minhtien.com",
+    linkedin: "#"
   },
   {
-    number: "10+", 
-    label: "Kỹ sư",
-    description: "Chuyên gia kỹ thuật và nghiên cứu phát triển"
+    name: "Trần Thị B",
+    position: "Giám đốc Sản xuất",
+    description: "Chuyên gia về quy trình sản xuất và kiểm soát chất lượng",
+    image: "/assets/team/member2.jpg",
+    email: "production@minhtien.com",
+    linkedin: "#"
   },
   {
-    number: "24/7",
-    label: "Hỗ trợ",
-    description: "Dịch vụ chăm sóc khách hàng liên tục"
+    name: "Lê Văn C",
+    position: "Giám đốc Kinh doanh",
+    description: "10 năm kinh nghiệm phát triển thị trường và chăm sóc khách hàng",
+    image: "/assets/team/member3.jpg",
+    email: "sales@minhtien.com",
+    linkedin: "#"
   },
   {
-    number: "15+",
-    label: "Năm kinh nghiệm",
-    description: "Kinh nghiệm trung bình của đội ngũ quản lý"
-  }
-];
-
-const departments = [
-  {
-    name: "Sản xuất",
-    description: "Vận hành dây chuyền sản xuất hiện đại với quy trình được chuẩn hóa",
-    icon: Building2
-  },
-  {
-    name: "Kiểm soát chất lượng",
-    description: "Đảm bảo chất lượng sản phẩm từ nguyên liệu đến thành phẩm",
-    icon: Search
-  },
-  {
-    name: "Nghiên cứu & Phát triển",
-    description: "Không ngừng cải tiến và phát triển sản phẩm mới",
-    icon: Beaker
-  },
-  {
-    name: "Kinh doanh & Marketing",
-    description: "Tư vấn giải pháp và chăm sóc khách hàng chuyên nghiệp",
-    icon: TrendingUp
+    name: "Phạm Thị D",
+    position: "Trưởng phòng R&D",
+    description: "Chuyên gia nghiên cứu và phát triển sản phẩm mới",
+    image: "/assets/team/member4.jpg",
+    email: "rnd@minhtien.com",
+    linkedin: "#"
   }
 ];
 
 export function TeamSection() {
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        {/* Section header */}
+    <section className="py-16 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+        {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-            Đội ngũ của chúng tôi
+          <div className="inline-flex items-center gap-2 bg-accent-50 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-4 border border-accent-200">
+            <Users className="h-4 w-4" />
+            <span>Đội ngũ của chúng tôi</span>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+            Đội ngũ <span className="text-accent-600">chuyên nghiệp</span>
           </h2>
+          
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Sức mạnh của Paracord Pro đến từ đội ngũ nhân viên tận tâm, chuyên nghiệp 
-            và không ngừng học hỏi để mang đến dịch vụ tốt nhất.
+            Đội ngũ lãnh đạo giàu kinh nghiệm, tận tâm và luôn sẵn sàng hỗ trợ khách hàng
           </p>
         </div>
 
-        {/* Team stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 px-16">
-          {teamStats.map((stat, index) => (
-            <Card key={index} className="text-center">
-              <CardContent className="p-6">
-                <div className="text-3xl font-bold text-slate-900 mb-2">
-                  {stat.number}
+        {/* Team Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {TEAM_MEMBERS.map((member, index) => (
+            <div
+              key={index}
+              className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                animationFillMode: 'both'
+              }}
+            >
+              {/* Image */}
+              <div className="relative h-64 bg-gray-100 overflow-hidden">
+                {/* Placeholder avatar */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-32 h-32 bg-accent-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-2xl">
+                    {member.name.charAt(0)}
+                  </div>
                 </div>
-                <div className="font-semibold text-slate-700 mb-2">
-                  {stat.label}
+                
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-3">
+                  <a
+                    href={`mailto:${member.email}`}
+                    className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-accent-50 transition-colors"
+                    title="Email"
+                  >
+                    <Mail className="h-5 w-5 text-accent-600" />
+                  </a>
+                  <a
+                    href={member.linkedin}
+                    className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-accent-50 transition-colors"
+                    title="LinkedIn"
+                  >
+                    <Linkedin className="h-5 w-5 text-accent-600" />
+                  </a>
                 </div>
-                <div className="text-sm text-slate-500">
-                  {stat.description}
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="font-bold text-slate-900 text-xl mb-1 group-hover:text-accent-600 transition-colors">
+                  {member.name}
+                </h3>
+                
+                <div className="text-accent-600 font-semibold text-sm mb-3">
+                  {member.position}
                 </div>
-              </CardContent>
-            </Card>
+                
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {member.description}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* Departments */}
-        <div>
-          <h3 className="text-2xl font-bold text-slate-900 text-center mb-8">
-            Các bộ phận chuyên môn
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-16">
-            {departments.map((dept, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="inline-flex items-center justify-center w-12 h-12 bg-slate-100 rounded-lg flex-shrink-0">
-                      <dept.icon className="h-6 w-6 text-slate-600" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-lg text-slate-900 mb-2">
-                        {dept.name}
-                      </h4>
-                      <p className="text-slate-600">
-                        {dept.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Company culture */}
-        <div className="mt-16 text-center">
-          <Card className="bg-slate-50 border-0">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Văn hóa doanh nghiệp
-              </h3>
-              <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                Tại Paracord Pro, chúng tôi xây dựng một môi trường làm việc tích cực, khuyến khích sáng tạo 
-                và phát triển cá nhân. Mỗi thành viên đều được tôn trọng, có cơ hội học hỏi và thăng tiến 
-                trong sự nghiệp. Chúng tôi tin rằng nhân viên hạnh phúc sẽ tạo ra sản phẩm chất lượng 
-                và dịch vụ xuất sắc.
-              </p>
-            </CardContent>
-          </Card>
+        {/* Bottom note */}
+        <div className="mt-12 text-center">
+          <p className="text-slate-600 mb-4">
+            Cùng với đội ngũ 30+ nhân viên giàu kinh nghiệm trong sản xuất và kiểm soát chất lượng
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 text-accent-600 font-semibold hover:text-accent-700 transition-colors"
+          >
+            <span>Liên hệ với chúng tôi</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
   );
 }
-

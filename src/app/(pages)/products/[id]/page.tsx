@@ -2,7 +2,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { ProductDetail } from "@/components/sections/ProductDetail";
-import { getProductImage } from "@/lib/images";
+import { getProductImage } from "@/lib/assets";
+import { VideoSection } from "@/components/ui/VideoSection";
 
 // Mock product data - in real app this would come from database
 const products = [
@@ -12,7 +13,7 @@ const products = [
     category: "paracord",
     description: "Dây dù chất lượng cao, bền chắc, phù hợp cho quần áo và phụ kiện thời trang. Sản phẩm được sản xuất từ chất liệu polyester cao cấp, đảm bảo độ bền và tính thẩm mỹ cao.",
     fullDescription: `
-      Dây dù bản tròn màu đen là sản phẩm cao cấp của Paracord Pro, được thiết kế đặc biệt cho các ứng dụng thời trang và công nghiệp. 
+      Dây dù bản tròn màu đen là sản phẩm cao cấp của MINH TIEN STRING CO., LTD, được thiết kế đặc biệt cho các ứng dụng thời trang và công nghiệp. 
       
       **Đặc điểm nổi bật:**
       - Chất liệu polyester cao cấp, bền chắc
@@ -57,12 +58,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   if (!product) {
     return {
-      title: "Sản phẩm không tìm thấy - Paracord Pro"
+      title: "Sản phẩm không tìm thấy - MINH TIEN STRING CO., LTD"
     };
   }
 
   return {
-    title: `${product.name} - Paracord Pro`,
+    title: `${product.name} - MINH TIEN STRING CO., LTD`,
     description: product.description,
     keywords: [product.name, product.category, "paracord pro", "dây dù", "dây đai thun"],
     openGraph: {
@@ -81,9 +82,39 @@ export default async function ProductDetailPage({ params }: Props) {
     notFound();
   }
 
+  // Video data theo category
+  const categoryVideos: Record<string, { id: string; title: string; description: string }> = {
+    paracord: {
+      id: "uelHwf8o7_U",
+      title: "Hướng dẫn sử dụng Dây dù",
+      description: "Xem cách sử dụng và ứng dụng dây dù trong các dự án thực tế"
+    },
+    eband: {
+      id: "kJQP7kiw5Fk",
+      title: "Hướng dẫn sử dụng Dây đai thun",
+      description: "Tìm hiểu cách sử dụng dây đai thun hiệu quả"
+    },
+    service: {
+      id: "YQHsXMglC9A",
+      title: "Quy trình đặt hàng dịch vụ",
+      description: "Hướng dẫn đặt hàng và sử dụng dịch vụ gia công"
+    }
+  };
+
+  const videoData = categoryVideos[product.category] || categoryVideos.paracord;
+
   return (
     <MainLayout>
       <ProductDetail product={product} />
+      
+      {/* Video hướng dẫn sử dụng - Minimal style */}
+      <VideoSection
+        videoId={videoData.id}
+        title={videoData.title}
+        description={videoData.description}
+        variant="minimal"
+        showStats={false}
+      />
     </MainLayout>
   );
 }

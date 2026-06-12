@@ -1,10 +1,13 @@
 import { MapPin, Navigation } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { LOCATION_MAP, COMPANY_ADDRESS } from "@/lib/content";
 
 export function LocationMap() {
-  const companyAddress = "Địa chỉ công ty"; // This would be the actual address
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(companyAddress)}`;
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY_ADDRESS.googleMapsQuery)}`;
+  
+  // Google Maps Embed URL - free, no API key required
+  const embedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.844!2d106.73!3d10.82!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1svi!2svn!4v1633024800000!5m2!1svi!2svn&q=${encodeURIComponent(COMPANY_ADDRESS.googleMapsQuery)}`;
 
   return (
     <section className="py-16 bg-slate-50">
@@ -12,36 +15,41 @@ export function LocationMap() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Vị trí của chúng tôi
+              {LOCATION_MAP.title}
             </h2>
             <p className="text-lg text-slate-600">
-              Đến thăm showroom và nhà máy sản xuất của chúng tôi để trải nghiệm trực tiếp sản phẩm.
+              {LOCATION_MAP.subtitle}
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Map placeholder */}
+            {/* Google Maps Embed */}
             <div className="lg:col-span-2">
-              <Card className="h-[400px] overflow-hidden">
-                <div className="h-full bg-slate-100 flex items-center justify-center relative">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 text-slate-400 mx-auto mb-4" />
-                    <h3 className="font-semibold text-slate-700 mb-2">Bản đồ Google Maps</h3>
-                    <p className="text-slate-500 text-sm mb-4">
-                      Tích hợp bản đồ sẽ hiển thị vị trí chính xác của công ty
-                    </p>
-                    <Button variant="outline" asChild>
-                      <a 
-                        href={googleMapsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center"
-                      >
-                        <Navigation className="h-4 w-4 mr-2" />
-                        Mở trong Google Maps
-                      </a>
-                    </Button>
-                  </div>
+              <Card className="h-[400px] overflow-hidden relative">
+                <iframe
+                  src={embedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Paracord Pro Location Map"
+                  className="rounded-lg"
+                />
+                {/* Fallback button for external map */}
+                <div className="absolute bottom-4 right-4 z-10">
+                  <Button variant="secondary" size="sm" asChild>
+                    <a 
+                      href={googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center shadow-lg"
+                    >
+                      <Navigation className="h-4 w-4 mr-1" />
+                      Mở bản đồ lớn
+                    </a>
+                  </Button>
                 </div>
               </Card>
             </div>
@@ -52,18 +60,14 @@ export function LocationMap() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <MapPin className="h-5 w-5" />
-                    Địa chỉ
+                    {LOCATION_MAP.addresses.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     <div>
-                      <div className="font-medium text-slate-900 mb-1">Showroom & Văn phòng</div>
-                      <div className="text-slate-600">Địa chỉ showroom</div>
-                    </div>
-                    <div>
-                      <div className="font-medium text-slate-900 mb-1">Nhà máy sản xuất</div>
-                      <div className="text-slate-600">Địa chỉ nhà máy</div>
+                      <div className="font-medium text-slate-900 mb-1">{LOCATION_MAP.addresses.office.title}</div>
+                      <div className="text-slate-600">{COMPANY_ADDRESS.office}</div>
                     </div>
                   </div>
                 </CardContent>
@@ -71,14 +75,13 @@ export function LocationMap() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Lưu ý khi đến thăm</CardTitle>
+                  <CardTitle>{LOCATION_MAP.visitNotes.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2 text-sm text-slate-600">
-                    <div>• Vui lòng liên hệ trước khi đến để được hỗ trợ tốt nhất</div>
-                    <div>• Có thể tham quan nhà máy sản xuất theo lịch hẹn</div>
-                    <div>• Mang theo danh thiếp hoặc giấy tờ giới thiệu công ty</div>
-                    <div>• Đội ngũ tư vấn sẵn sàng hỗ trợ từ 8:00 - 17:30</div>
+                    {LOCATION_MAP.visitNotes.notes.map((note, index) => (
+                      <div key={index}>• {note}</div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>

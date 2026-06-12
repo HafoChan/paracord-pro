@@ -5,26 +5,26 @@ import { COMPANY_INFO } from "@/lib/constants";
 
 export function ContactCTA() {
   return (
-    <section className="py-6 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden">
+    <section className="py-6 bg-white relative overflow-hidden">
       {/* Simplified background */}
-      <div className="absolute top-1/4 -left-32 w-64 h-64 bg-gradient-to-br from-blue-400/8 to-indigo-500/8 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-gradient-to-br from-purple-400/8 to-pink-500/8 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/4 -left-32 w-64 h-64 bg-accent-100/20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-primary-100/20 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-16 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Compact heading */}
           <div className="mb-8">
-            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1.5 rounded-full text-sm font-medium mb-4">
-              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+            <div className="inline-flex items-center gap-2 bg-accent-50 text-accent-700 px-3 py-1.5 rounded-full text-sm font-medium mb-4 border border-accent-200">
+              <div className="w-1.5 h-1.5 bg-accent-500 rounded-full"></div>
               Liên hệ ngay
             </div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-              <span className="text-gradient">Sẵn sàng hợp tác</span>{" "}
-              <span className="text-gradient-accent">cùng chúng tôi?</span>
+              <span className="text-accent-600">Sẵn sàng hợp tác</span>{" "}
+              <span className="text-primary-900">cùng chúng tôi?</span>
             </h2>
             <p className="text-lg text-slate-600 mb-6 max-w-2xl mx-auto leading-relaxed">
               Liên hệ ngay để được tư vấn miễn phí và nhận báo giá tốt nhất
-              <br /><span className="text-blue-600 font-semibold">Cam kết phản hồi trong 15 phút!</span>
+              <br /><span className="text-accent-600 font-semibold">Cam kết phản hồi trong 15 phút!</span>
             </p>
           </div>
 
@@ -38,7 +38,7 @@ export function ContactCTA() {
                 action: "Gọi ngay",
                 href: `tel:${COMPANY_INFO.phone}`,
                 detail: COMPANY_INFO.phone,
-                color: "from-blue-500 to-blue-600"
+                color: "bg-accent-600"
               },
               {
                 icon: Mail,
@@ -46,8 +46,8 @@ export function ContactCTA() {
                 description: "Nhận báo giá",
                 action: "Gửi email",
                 href: `mailto:${COMPANY_INFO.email}`,
-                detail: "info@paracordpro.com",
-                color: "from-green-500 to-green-600"
+                detail: "congtytnhhsxdayminhtien@gmail.com",
+                color: "bg-primary-700"
               },
               {
                 icon: MessageCircle,
@@ -56,19 +56,19 @@ export function ContactCTA() {
                 action: "Bắt đầu chat",
                 href: "/contact",
                 detail: "Phản hồi ngay",
-                color: "from-purple-500 to-purple-600"
+                color: "bg-primary-600"
               }
             ].map((contact, index) => (
               <div 
                 key={index}
-                className="group flex flex-col items-center p-6 bg-white border border-slate-200 rounded-xl hover:shadow-xl hover:border-blue-300 hover:-translate-y-2 hover:scale-105 transition-all duration-300 cursor-pointer"
+                className="group flex flex-col items-center p-6 bg-white border border-slate-200 rounded-xl hover:shadow-xl hover:border-accent-300 hover:-translate-y-2 hover:scale-105 transition-all duration-300 cursor-pointer"
               >
                 {/* Enhanced icon */}
-                <div className={`w-12 h-12 bg-gradient-to-br ${contact.color} rounded-lg flex items-center justify-center mb-4 shadow-md group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
+                <div className={`w-12 h-12 ${contact.color} rounded-lg flex items-center justify-center mb-4 shadow-md group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
                   <contact.icon className="h-6 w-6 text-white group-hover:animate-pulse" />
                 </div>
                 
-                <h3 className="font-bold mb-2 text-slate-900 group-hover:text-blue-900 transition-colors duration-300">
+                <h3 className="font-bold mb-2 text-slate-900 group-hover:text-accent-600 transition-colors duration-300">
                   {contact.title}
                 </h3>
                 
@@ -76,20 +76,20 @@ export function ContactCTA() {
                   {contact.description}
                 </p>
                 
-                <p className="text-xs text-slate-500 mb-4 font-medium group-hover:text-blue-600 transition-colors duration-300">{contact.detail}</p>
+                <p className="text-xs text-slate-500 mb-4 font-medium group-hover:text-accent-600 transition-colors duration-300">{contact.detail}</p>
                 
                 <Button
                   variant="outline"
                   size="sm"
                   asChild
-                  className="group/btn border border-slate-300 hover:border-blue-400 hover:bg-blue-50 hover:scale-105 transition-all duration-300 relative overflow-hidden"
+                  className="group/btn border border-slate-300 hover:border-accent-400 hover:bg-accent-50 hover:scale-105 transition-all duration-300 relative overflow-hidden"
                 >
                   <a
                     href={contact.href}
-                    className="text-slate-700 hover:text-blue-600 transition-colors duration-300 font-medium relative z-10"
+                    className="text-slate-700 hover:text-accent-600 transition-colors duration-300 font-medium relative z-10"
                   >
                     {contact.action}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-50 to-transparent transform -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-50 to-transparent transform -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
                   </a>
                 </Button>
               </div>
@@ -101,15 +101,15 @@ export function ContactCTA() {
             {/* Simple trust indicators */}
             <div className="flex items-center gap-4 text-sm text-slate-600">
               <div className="flex items-center gap-1.5">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-accent-500 rounded-full"></div>
                 <span>Tư vấn miễn phí</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-accent-500 rounded-full"></div>
                 <span>Báo giá cạnh tranh</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-accent-500 rounded-full"></div>
                 <span>Giao hàng nhanh</span>
               </div>
             </div>
@@ -117,7 +117,7 @@ export function ContactCTA() {
             {/* Enhanced CTA Button */}
             <Button 
               size="lg" 
-              className="group bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-700 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden" 
+              className="group bg-accent-600 hover:bg-accent-700 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden" 
               asChild
             >
               <Link href="/contact" className="flex items-center gap-2 relative z-10">

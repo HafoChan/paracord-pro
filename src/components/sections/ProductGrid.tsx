@@ -5,8 +5,9 @@ import { Search, Grid3x3, List, ChevronDown } from "lucide-react";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { ProductCard } from "../ui/ProductCard";
-import { SPECIFIC_PRODUCT_IMAGES } from "@/lib/images";
+import { SPECIFIC_PRODUCT_IMAGES } from "@/lib/assets";
 import { Product } from "@/types";
+import { SEARCH_FILTER } from "@/lib/content";
 
 // Mock product data
 const products: Product[] = [
@@ -114,12 +115,7 @@ const products: Product[] = [
   }
 ];
 
-const sortOptions = [
-  { value: "name", label: "Tên sản phẩm" },
-  { value: "price", label: "Giá" },
-  { value: "category", label: "Danh mục" },
-  { value: "featured", label: "Nổi bật" }
-];
+const sortOptions = SEARCH_FILTER.sort.options;
 
 export function ProductGrid() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -175,7 +171,7 @@ export function ProductGrid() {
         <div className="relative flex-1 max-w-xs">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
           <Input
-            placeholder="Tìm kiếm sản phẩm..."
+            placeholder={SEARCH_FILTER.search.placeholder}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -192,8 +188,8 @@ export function ProductGrid() {
               onClick={() => setViewMode("grid")}
               className={`rounded-none transition-all duration-300 ${
                 viewMode === "grid" 
-                  ? "bg-blue-900 text-white shadow-md" 
-                  : "hover:bg-blue-50 hover:text-blue-600"
+                  ? "bg-accent-700 text-white shadow-md" 
+                  : "hover:bg-accent-50 hover:text-accent-700"
               }`}
             >
               <Grid3x3 className="h-4 w-4" />
@@ -204,8 +200,8 @@ export function ProductGrid() {
               onClick={() => setViewMode("list")}
               className={`rounded-none transition-all duration-300 ${
                 viewMode === "list" 
-                  ? "bg-blue-900 text-white shadow-md" 
-                  : "hover:bg-blue-50 hover:text-blue-600"
+                  ? "bg-accent-700 text-white shadow-md" 
+                  : "hover:bg-accent-50 hover:text-accent-700"
               }`}
             >
               <List className="h-4 w-4" />
@@ -218,9 +214,9 @@ export function ProductGrid() {
               variant="outline"
               size="sm"
               onClick={() => setShowSortOptions(!showSortOptions)}
-              className="flex items-center gap-2 border-2 border-slate-200 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 shadow-sm hover:shadow-md"
+              className="flex items-center gap-2 border-2 border-slate-200 hover:border-accent-300 hover:bg-accent-50 hover:text-accent-700 transition-all duration-300 shadow-sm hover:shadow-md"
             >
-              <span className="hidden sm:inline font-medium">Sắp xếp:</span>
+              <span className="hidden sm:inline font-medium">{SEARCH_FILTER.sort.label}</span>
               <span className="font-medium">{sortOptions.find(opt => opt.value === sortBy)?.label}</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${
                 showSortOptions ? 'rotate-180' : ''
@@ -236,8 +232,8 @@ export function ProductGrid() {
                       setSortBy(option.value);
                       setShowSortOptions(false);
                     }}
-                    className={`w-full text-left px-4 py-3 text-sm transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 flex items-center justify-between group ${
-                      sortBy === option.value ? "bg-blue-900 text-white font-medium" : ""
+                    className={`w-full text-left px-4 py-3 text-sm transition-all duration-200 hover:bg-accent-50 hover:text-accent-700 flex items-center justify-between group ${
+                      sortBy === option.value ? "bg-accent-700 text-white font-medium" : ""
                     }`}
                     style={{ animationDelay: `${index * 0.05}s` }}
                   >
@@ -255,9 +251,9 @@ export function ProductGrid() {
 
       {/* Results count */}
       <div className="flex items-center justify-between text-sm text-slate-600">
-        <span>Hiển thị {sortedProducts.length} sản phẩm</span>
+        <span>{SEARCH_FILTER.search.resultsCount.replace('{count}', sortedProducts.length.toString())}</span>
         {searchTerm && (
-          <span>Kết quả cho &quot;{searchTerm}&quot;</span>
+          <span>{SEARCH_FILTER.search.searchResults.replace('{term}', searchTerm)}</span>
         )}
       </div>
 
@@ -291,12 +287,12 @@ export function ProductGrid() {
       {/* No results */}
       {sortedProducts.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-slate-500 mb-4">Không tìm thấy sản phẩm nào phù hợp</p>
+          <p className="text-slate-500 mb-4">{SEARCH_FILTER.search.noResults.message}</p>
           <Button 
             variant="outline" 
             onClick={() => setSearchTerm("")}
           >
-            Xóa bộ lọc
+            {SEARCH_FILTER.search.noResults.clearButton}
           </Button>
         </div>
       )}
@@ -308,18 +304,18 @@ export function ProductGrid() {
             <Button 
               variant="outline" 
               size="lg"
-              className="group relative border-2 border-slate-300 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl px-8 py-4 overflow-hidden"
+              className="group relative border-2 border-slate-300 hover:border-accent-400 hover:bg-accent-50 hover:text-accent-700 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl px-8 py-4 overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2 font-semibold">
                 <Grid3x3 className="h-5 w-5 group-hover:animate-pulse" />
-                Xem thêm sản phẩm
+                {SEARCH_FILTER.loadMore.buttonText}
                 <ChevronDown className="h-4 w-4 group-hover:translate-y-1 transition-transform duration-300" />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             </Button>
             
             <p className="text-sm text-slate-500 mt-4">
-              Hiển thị {sortedProducts.length} sản phẩm • Còn nhiều sản phẩm khác
+              {SEARCH_FILTER.loadMore.summary.replace('{count}', sortedProducts.length.toString())}
             </p>
           </div>
         </div>
