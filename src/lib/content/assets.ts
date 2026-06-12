@@ -34,11 +34,8 @@ export const UI_ASSETS = {
     service: "/placeholders/service-sample.svg"
   },
   icons: {
-    file: "/file.svg",
-    globe: "/globe.svg",
-    next: "/next.svg",
-    window: "/window.svg",
-    vercel: "/vercel.svg"
+    // Using Minh Tien brand logo only
+    logo: "/MinhTien_logo.png"
   }
 };
 
