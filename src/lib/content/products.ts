@@ -53,15 +53,35 @@ export const PRODUCT_GRID = {
 
 // Product Categories
 export const PRODUCT_CATEGORIES_CONTENT = {
-  paracord: {
-    name: "Dây dù (Paracord)",
+  "day-du": {
+    name: "Dây dù",
     description: "Dây dù chất lượng cao cho nhiều ứng dụng",
     features: ["Bền chắc", "Đa dạng màu sắc", "Kháng nước"]
   },
-  eband: {
-    name: "Dây đai thun (Elastic Band)",
-    description: "Dây đai thun co giãn tốt cho các ứng dụng chuyên dụng", 
+  "day-du-thun": {
+    name: "Dây dù thun",
+    description: "Dây dù có độ co giãn, bền chắc và đàn hồi",
+    features: ["Co giãn", "Bền chắc", "Đa dạng kích cỡ"]
+  },
+  "day-tip": {
+    name: "Dây típ",
+    description: "Dây dù bấm đầu típ sẵn, tiện lợi sử dụng",
+    features: ["Bấm đầu sẵn", "Tiện lợi", "Đa dạng chiều dài"]
+  },
+  "day-thun": {
+    name: "Dây thun (Elastic Band)",
+    description: "Dây đai thun bản dẹp co giãn tốt cho các ứng dụng chuyên dụng",
     features: ["Co giãn cao", "Độ bền tốt", "Đa dạng kích thước"]
+  },
+  "day-dai": {
+    name: "Dây đai (Webbing)",
+    description: "Dây đai bản dẹp bền chắc, chịu lực cao",
+    features: ["Chịu lực cao", "Đa dạng độ rộng", "Bền chắc"]
+  },
+  "day-chu": {
+    name: "Dây chữ (Jacquard)",
+    description: "Dây đai dệt chữ, logo, họa tiết theo yêu cầu",
+    features: ["Dệt chữ/logo", "Nhận diện thương hiệu", "Thẩm mỹ cao"]
   },
   service: {
     name: "Dịch vụ gia công",
@@ -78,13 +98,37 @@ export const QUICK_CATEGORIES = {
       name: "Dây dù",
       description: "Dây dù đa năng cho mọi ứng dụng", 
       icon: "rope",
-      href: "/products?category=paracord"
+      href: "/products?category=day-du"
     },
     {
-      name: "Dây đai thun",
+      name: "Dây dù thun",
+      description: "Dây dù co giãn, bền chắc",
+      icon: "elastic-rope",
+      href: "/products?category=day-du-thun"
+    },
+    {
+      name: "Dây típ",
+      description: "Dây bấm đầu típ sẵn",
+      icon: "tip",
+      href: "/products?category=day-tip"
+    },
+    {
+      name: "Dây thun",
       description: "Dây thun co giãn chất lượng cao",
       icon: "elastic", 
-      href: "/products?category=eband"
+      href: "/products?category=day-thun"
+    },
+    {
+      name: "Dây đai",
+      description: "Dây đai bền chắc, chịu lực",
+      icon: "webbing",
+      href: "/products?category=day-dai"
+    },
+    {
+      name: "Dây chữ",
+      description: "Dây dệt chữ/logo theo yêu cầu",
+      icon: "jacquard",
+      href: "/products?category=day-chu"
     },
     {
       name: "Dịch vụ",

@@ -10,9 +10,13 @@ interface SidebarCategory {
 }
 
 const SIDEBAR_CATEGORIES: SidebarCategory[] = [
-  { id: "paracord", name: "Dây dù (Paracord)", count: 3 },
-  { id: "eband", name: "Dây đai thun (Elastic Band)", count: 2 },
-  { id: "service", name: "Dịch vụ gia công", count: 1 },
+  { id: "day-du", name: "Dây dù", count: 23 },
+  { id: "day-du-thun", name: "Dây dù thun", count: 8 },
+  { id: "day-tip", name: "Dây típ", count: 4 },
+  { id: "day-thun", name: "Dây thun", count: 16 },
+  { id: "day-dai", name: "Dây đai", count: 12 },
+  { id: "day-chu", name: "Dây chữ (Jacquard)", count: 2 },
+  { id: "service", name: "Dịch vụ gia công", count: 0 },
 ];
 
 interface ProductSidebarProps {

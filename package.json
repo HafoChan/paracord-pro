@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "import-products": "npx tsx scripts/import-products.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

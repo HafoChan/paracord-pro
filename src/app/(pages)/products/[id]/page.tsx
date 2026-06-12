@@ -2,51 +2,59 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { ProductDetail } from "@/components/sections/ProductDetail";
-import { getProductImage } from "@/lib/assets";
-import { VideoSection } from "@/components/ui/VideoSection";
+import { createClient } from "@supabase/supabase-js";
+import { Product } from "@/types";
+import { PRODUCTS_DATA } from "@/lib/data/products";
 
-// Mock product data - in real app this would come from database
-const products = [
-  {
-    id: "1",
-    name: "Dây dù bản tròn màu đen",
-    category: "paracord",
-    description: "Dây dù chất lượng cao, bền chắc, phù hợp cho quần áo và phụ kiện thời trang. Sản phẩm được sản xuất từ chất liệu polyester cao cấp, đảm bảo độ bền và tính thẩm mỹ cao.",
-    fullDescription: `
-      Dây dù bản tròn màu đen là sản phẩm cao cấp của MINH TIEN STRING CO., LTD, được thiết kế đặc biệt cho các ứng dụng thời trang và công nghiệp. 
-      
-      **Đặc điểm nổi bật:**
-      - Chất liệu polyester cao cấp, bền chắc
-      - Màu đen sang trọng, không phai
-      - Bề mặt mịn màng, dễ gia công
-      - Khả năng chịu lực tốt
-      
-      **Ứng dụng:**
-      - Dây rút áo khoác, quần thể thao
-      - Dây tag treo nhãn mác
-      - Phụ kiện thời trang
-      - Đồ thủ công mỹ nghệ
-      
-      **Quy trình sản xuất:**
-      Sản phẩm được sản xuất trên dây chuyền hiện đại với quy trình kiểm soát chất lượng nghiêm ngặt. Mỗi cuộn dây đều được kiểm tra kỹ lưỡng trước khi đóng gói và giao hàng.
-    `,
-    specifications: {
-      "Đường kính": "4mm",
-      "Chiều dài": "100m/cuộn",
-      "Chất liệu": "Polyester 100%",
-      "Màu sắc": "Đen (#000000)",
-      "Khả năng chịu lực": "50kg",
-      "Nhiệt độ sử dụng": "-20°C đến +80°C",
-      "Độ ẩm khuyến nghị": "< 65%"
-    },
-    priceRange: "50,000 - 80,000 VNĐ/m",
-    colors: ["black"],
-    images: getProductImage("paracord_black", "gallery") as string[],
-    isFeatured: true,
-    relatedProducts: ["2", "6"]
+// Server-side Supabase client for data fetching
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+
+function getServerSupabase() {
+  return createClient(supabaseUrl, supabaseAnonKey);
+}
+
+// Map database row to Product interface
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapRowToProduct(row: any): Product {
+  return {
+    id: row.id,
+    name: row.name,
+    slug: row.slug,
+    size: row.size,
+    category: row.category,
+    description: row.description || "",
+    specifications: row.specifications || {},
+    priceRange: row.price_range || "",
+    colors: row.colors || [],
+    images: row.images || [],
+    videoUrl: row.video_url,
+    isFeatured: row.is_featured || false,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+  };
+}
+
+// Fetch product by ID from Supabase or fallback to local
+async function getProduct(id: string): Promise<Product | null> {
+  try {
+    const supabase = getServerSupabase();
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error || !data) {
+      // Fallback to local data
+      return PRODUCTS_DATA.find((p) => p.id === id) || null;
+    }
+
+    return mapRowToProduct(data);
+  } catch {
+    return PRODUCTS_DATA.find((p) => p.id === id) || null;
   }
-  // Add more products as needed
-];
+}
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -54,68 +62,43 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const product = products.find(p => p.id === id);
-  
+  const product = await getProduct(id);
+
   if (!product) {
     return {
-      title: "Sản phẩm không tìm thấy - MINH TIEN STRING CO., LTD"
+      title: "Sản phẩm không tìm thấy - MINH TIEN STRING CO., LTD",
     };
   }
 
   return {
     title: `${product.name} - MINH TIEN STRING CO., LTD`,
     description: product.description,
-    keywords: [product.name, product.category, "paracord pro", "dây dù", "dây đai thun"],
+    keywords: [
+      product.name,
+      product.category,
+      "paracord pro",
+      "dây dù",
+      "dây đai thun",
+    ],
     openGraph: {
       title: product.name,
       description: product.description,
-      images: product.images,
+      images: product.images.length > 0 ? product.images : undefined,
     },
   };
 }
 
 export default async function ProductDetailPage({ params }: Props) {
   const { id } = await params;
-  const product = products.find(p => p.id === id);
+  const product = await getProduct(id);
 
   if (!product) {
     notFound();
   }
 
-  // Video data theo category
-  const categoryVideos: Record<string, { id: string; title: string; description: string }> = {
-    paracord: {
-      id: "uelHwf8o7_U",
-      title: "Hướng dẫn sử dụng Dây dù",
-      description: "Xem cách sử dụng và ứng dụng dây dù trong các dự án thực tế"
-    },
-    eband: {
-      id: "kJQP7kiw5Fk",
-      title: "Hướng dẫn sử dụng Dây đai thun",
-      description: "Tìm hiểu cách sử dụng dây đai thun hiệu quả"
-    },
-    service: {
-      id: "YQHsXMglC9A",
-      title: "Quy trình đặt hàng dịch vụ",
-      description: "Hướng dẫn đặt hàng và sử dụng dịch vụ gia công"
-    }
-  };
-
-  const videoData = categoryVideos[product.category] || categoryVideos.paracord;
-
   return (
     <MainLayout>
       <ProductDetail product={product} />
-      
-      {/* Video hướng dẫn sử dụng - Minimal style */}
-      <VideoSection
-        videoId={videoData.id}
-        title={videoData.title}
-        description={videoData.description}
-        variant="minimal"
-        showStats={false}
-      />
     </MainLayout>
   );
 }
-

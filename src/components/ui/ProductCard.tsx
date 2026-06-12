@@ -25,9 +25,13 @@ const SPEC_TRANSLATIONS: Record<string, string> = {
 };
 
 const CATEGORY_TRANSLATIONS: Record<string, string> = {
-  paracord: "Dây dù",
-  eband: "Dây đai thun",
-  service: "Dịch vụ",
+  "day-du": "Dây dù",
+  "day-du-thun": "Dây dù thun",
+  "day-tip": "Dây típ",
+  "day-thun": "Dây thun",
+  "day-dai": "Dây đai",
+  "day-chu": "Dây chữ",
+  "service": "Dịch vụ gia công",
 };
 
 export function ProductCard({ product }: ProductCardProps) {

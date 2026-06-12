@@ -64,14 +64,14 @@ export const VIDEO_METADATA: Record<string, VideoData> = {
     id: VIDEO_IDS.PARACORD_DEMO,
     title: "Ứng dụng thực tế của Dây dù (Paracord)",
     description: "Xem cách dây dù được sử dụng trong các ngành may mặc, balo, đồ thể thao và nhiều lĩnh vực khác",
-    category: "paracord"
+    category: "day-du"
   },
   
   [VIDEO_IDS.EBAND_DEMO]: {
     id: VIDEO_IDS.EBAND_DEMO,
     title: "Ứng dụng của Dây đai thun (Elastic Band)",
     description: "Khám phá tính năng co giãn vượt trội và ứng dụng đa dạng của dây đai thun chất lượng cao",
-    category: "eband"
+    category: "day-thun"
   },
   
   [VIDEO_IDS.SERVICE_DEMO]: {

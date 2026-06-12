@@ -7,10 +7,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
 const categories = [
-  { id: "all", name: "Tất cả sản phẩm", count: 48 },
-  { id: "paracord", name: "Dây dù bản tròn", count: 20 },
-  { id: "eband", name: "Dây đai thun", count: 15 },
-  { id: "service", name: "Dịch vụ gia công", count: 13 }
+  { id: "all", name: "Tất cả sản phẩm", count: 65 },
+  { id: "day-du", name: "Dây dù", count: 23 },
+  { id: "day-du-thun", name: "Dây dù thun", count: 8 },
+  { id: "day-tip", name: "Dây típ", count: 4 },
+  { id: "day-thun", name: "Dây thun", count: 16 },
+  { id: "day-dai", name: "Dây đai", count: 12 },
+  { id: "day-chu", name: "Dây chữ", count: 2 },
+  { id: "service", name: "Dịch vụ gia công", count: 0 }
 ];
 
 const colors = [

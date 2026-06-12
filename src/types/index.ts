@@ -17,11 +17,23 @@ export interface SettingValue {
   [key: string]: string | number | boolean | null;
 }
 
+// Product category type
+export type ProductCategoryType = 
+  | "day-du"         // Dây dù (Paracord)
+  | "day-du-thun"    // Dây dù thun (Elastic Paracord)
+  | "day-tip"        // Dây típ (Tipped Cord)
+  | "day-thun"       // Dây thun (Elastic Band)
+  | "day-dai"        // Dây đai (Webbing)
+  | "day-chu"        // Dây chữ (Jacquard)
+  | "service";       // Dịch vụ gia công
+
 // Product types
 export interface Product {
   id: string;
   name: string;
-  category: "paracord" | "eband" | "service";
+  slug: string;
+  size?: string;
+  category: ProductCategoryType;
   description: string;
   specifications: ProductSpecifications;
   priceRange: string;
