@@ -13,45 +13,46 @@ import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { COMPANY_INFO } from "@/lib/constants";
-import { getProductImage, getCategoryImage } from "@/lib/assets";
-
-interface Product {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  fullDescription: string;
-  specifications: Record<string, string>;
-  priceRange: string;
-  colors: string[];
-  images: string[];
-  isFeatured: boolean;
-  relatedProducts?: string[];
-}
+import { Product } from "@/types";
 
 interface ProductDetailProps {
   product: Product;
 }
 
-const categoryLabels = {
-  paracord: "Dây dù",
-  eband: "Dây đai thun", 
-  service: "Dịch vụ"
+const categoryLabels: Record<string, string> = {
+  "day-du": "Dây dù",
+  "day-du-thun": "Dây dù thun",
+  "day-tip": "Dây típ",
+  "day-thun": "Dây thun",
+  "day-dai": "Dây đai",
+  "day-chu": "Dây chữ",
+  "service": "Dịch vụ gia công",
 };
+
+const specLabels: Record<string, string> = {
+  diameter: "Đường kính",
+  width: "Độ rộng",
+  length: "Chiều dài",
+  material: "Chất liệu",
+  elasticity: "Độ co giãn",
+  colors: "Màu sắc",
+  processing: "Gia công",
+  quantity: "Số lượng",
+  delivery: "Giao hàng",
+};
+
+function getSpecLabel(key: string): string {
+  return specLabels[key.toLowerCase()] || key;
+}
 
 export function ProductDetail({ product }: ProductDetailProps) {
   // State cho ảnh hiện tại
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   
-  // Tạo danh sách ảnh từ product.images hoặc fallback images
+  // Tạo danh sách ảnh từ product.images
   const productImages = product.images.length > 0 
     ? product.images 
-    : [
-        getProductImage(`${product.category}_${product.id}`, 'main') as string,
-        getCategoryImage(product.category as 'paracord' | 'eband' | 'service'),
-        getCategoryImage(product.category as 'paracord' | 'eband' | 'service'),
-        getCategoryImage(product.category as 'paracord' | 'eband' | 'service')
-      ];
+    : ['/placeholders/paracord-sample.svg'];
 
   // Keyboard navigation
   useEffect(() => {
@@ -240,9 +241,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                  {Object.entries(product.specifications).slice(0, 4).map(([key, value]) => (
+                  {Object.entries(product.specifications).filter(([, v]) => v).slice(0, 4).map(([key, value]) => (
                     <div key={key} className="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                      <div className="text-sm text-slate-600 mb-1">{key}</div>
+                      <div className="text-sm text-slate-600 mb-1">{getSpecLabel(key)}</div>
                       <div className="font-semibold text-primary-900">{value}</div>
                     </div>
                   ))}
@@ -262,7 +263,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               </CardHeader>
               <CardContent>
                 <div className="prose prose-slate max-w-none">
-                  {product.fullDescription.split('\n').map((paragraph, index) => (
+                  {product.description.split('\n').map((paragraph, index) => (
                     paragraph.trim() && (
                       <p key={index} className="mb-4 text-slate-700 leading-relaxed">
                         {paragraph.includes('**') 
@@ -287,9 +288,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {Object.entries(product.specifications).map(([key, value]) => (
+                  {Object.entries(product.specifications).filter(([, v]) => v).map(([key, value]) => (
                     <div key={key} className="flex justify-between py-3 border-b border-slate-100 last:border-b-0">
-                      <span className="text-slate-600 text-sm font-medium">{key}</span>
+                      <span className="text-slate-600 text-sm font-medium">{getSpecLabel(key)}</span>
                       <span className="font-semibold text-sm text-primary-900">{value}</span>
                     </div>
                   ))}

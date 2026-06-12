@@ -14,7 +14,8 @@ const products: Product[] = [
   {
     id: "1",
     name: "Dây dù bản tròn màu đen",
-    category: "paracord",
+    slug: "day-du-ban-tron-mau-den",
+    category: "day-du",
     description: "Dây dù chất lượng cao, bền chắc, phù hợp cho quần áo và phụ kiện thời trang",
     specifications: {
       diameter: "4mm",
@@ -31,7 +32,8 @@ const products: Product[] = [
   {
     id: "2", 
     name: "Dây đai thun đa năng",
-    category: "eband",
+    slug: "day-dai-thun-da-nang",
+    category: "day-thun",
     description: "Dây đai thun co giãn tốt, ideal cho quai balo và túi xách",
     specifications: {
       width: "20mm",
@@ -48,7 +50,8 @@ const products: Product[] = [
   {
     id: "3",
     name: "Dây dù màu đỏ cam",
-    category: "paracord", 
+    slug: "day-du-mau-do-cam",
+    category: "day-du", 
     description: "Dây dù màu sắc nổi bật, chất lượng cao cho các ứng dụng thể thao",
     specifications: {
       diameter: "5mm",
@@ -65,6 +68,7 @@ const products: Product[] = [
   {
     id: "4",
     name: "Dịch vụ bấm đầu típ",
+    slug: "dich-vu-bam-dau-tip",
     category: "service",
     description: "Dịch vụ gia công bấm đầu típ chuyên nghiệp, nhanh chóng",
     specifications: {
@@ -82,7 +86,8 @@ const products: Product[] = [
   {
     id: "5",
     name: "Dây đai thun trắng",
-    category: "eband",
+    slug: "day-dai-thun-trang",
+    category: "day-thun",
     description: "Dây đai thun màu trắng tinh khiết, phù hợp cho y tế và thời trang",
     specifications: {
       width: "15mm",
@@ -99,7 +104,8 @@ const products: Product[] = [
   {
     id: "6",
     name: "Dây dù đa màu sắc",
-    category: "paracord",
+    slug: "day-du-da-mau-sac",
+    category: "day-du",
     description: "Bộ sưu tập dây dù với nhiều màu sắc đa dạng cho mọi nhu cầu",
     specifications: {
       diameter: "3mm",

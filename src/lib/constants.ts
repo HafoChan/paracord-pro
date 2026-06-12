@@ -22,12 +22,38 @@ export const COMPANY_INFO = {
 
 // Product Categories
 export const PRODUCT_CATEGORIES = {
-  PARACORD: "paracord",
-  EBAND: "eband", 
+  DAY_DU: "day-du",
+  DAY_DU_THUN: "day-du-thun",
+  DAY_TIP: "day-tip",
+  DAY_THUN: "day-thun",
+  DAY_DAI: "day-dai",
+  DAY_CHU: "day-chu",
   SERVICE: "service"
 } as const;
 
 export type ProductCategory = typeof PRODUCT_CATEGORIES[keyof typeof PRODUCT_CATEGORIES];
+
+// Category display names mapping
+export const CATEGORY_DISPLAY_NAMES: Record<ProductCategory, string> = {
+  "day-du": "Dây dù",
+  "day-du-thun": "Dây dù thun",
+  "day-tip": "Dây típ",
+  "day-thun": "Dây thun",
+  "day-dai": "Dây đai",
+  "day-chu": "Dây chữ",
+  "service": "Dịch vụ gia công"
+};
+
+// Mapping from Excel category names to system category IDs
+export const EXCEL_CATEGORY_MAP: Record<string, ProductCategory> = {
+  "DÂY DÙ": "day-du",
+  "DÂY DÙ THUN": "day-du-thun",
+  "DÂY TÍP": "day-tip",
+  "DÂY THUN": "day-thun",
+  "DÂY ĐAI": "day-dai",
+  "DÂY CHỮ": "day-chu",
+  "DỊCH VỤ": "service"
+};
 
 // Note: Navigation items moved to src/lib/content/ui.ts in NAVIGATION_CONTENT
 // Note: Social media links moved to src/lib/content/ui.ts in FOOTER_CONTENT  

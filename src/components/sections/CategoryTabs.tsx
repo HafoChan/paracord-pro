@@ -1,36 +1,64 @@
 "use client";
 
-import { Package, Zap, Wrench } from "lucide-react";
+import { Package, Zap, Wrench, CircleDot, Tag, Layers, Type } from "lucide-react";
 
 interface CategoryTab {
   id: string;
   name: string;
-  icon: "package" | "zap" | "wrench";
+  icon: "package" | "zap" | "wrench" | "circle-dot" | "tag" | "layers" | "type";
   description: string;
   count: number;
 }
 
 const CATEGORY_TABS: CategoryTab[] = [
   {
-    id: "paracord",
-    name: "Dây dù (Paracord)",
+    id: "day-du",
+    name: "Dây dù",
     icon: "package",
     description: "Dây dù đa năng, bền chắc",
-    count: 20
+    count: 23
   },
   {
-    id: "eband",
-    name: "Dây đai thun (Elastic Band)",
+    id: "day-du-thun",
+    name: "Dây dù thun",
+    icon: "circle-dot",
+    description: "Dây dù co giãn",
+    count: 8
+  },
+  {
+    id: "day-tip",
+    name: "Dây típ",
+    icon: "tag",
+    description: "Dây bấm đầu típ sẵn",
+    count: 4
+  },
+  {
+    id: "day-thun",
+    name: "Dây thun",
     icon: "zap",
     description: "Dây thun co giãn cao",
-    count: 15
+    count: 16
+  },
+  {
+    id: "day-dai",
+    name: "Dây đai",
+    icon: "layers",
+    description: "Dây đai bền chắc",
+    count: 12
+  },
+  {
+    id: "day-chu",
+    name: "Dây chữ",
+    icon: "type",
+    description: "Dây dệt chữ/logo",
+    count: 2
   },
   {
     id: "service",
     name: "Dịch vụ gia công",
     icon: "wrench",
     description: "Gia công chuyên nghiệp",
-    count: 13
+    count: 0
   }
 ];
 
@@ -45,6 +73,10 @@ export function CategoryTabs({ activeCategory, onCategoryChange }: CategoryTabsP
       case "package": return Package;
       case "zap": return Zap;
       case "wrench": return Wrench;
+      case "circle-dot": return CircleDot;
+      case "tag": return Tag;
+      case "layers": return Layers;
+      case "type": return Type;
       default: return Package;
     }
   };

@@ -1,33 +1,58 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { PRODUCT_CATEGORY_IMAGES } from "@/lib/assets";
+import { CATEGORY_DETAILS } from "@/lib/content/categories";
 
+// Build categories from the centralized data
 const categories = [
   {
-    id: 'paracord',
-    name: 'Dây dù bản tròn',
-    description: 'Dây dù đa năng cho quần áo, áo khoác, dây rút balo. Có thể bấm đầu típ và cắt theo yêu cầu.',
-    image: PRODUCT_CATEGORY_IMAGES.paracord.featured,
-    features: ['Đa dạng màu sắc', 'Gia công bấm đầu', 'Cắt theo yêu cầu'],
-    href: '/products?category=paracord'
+    id: "day-du",
+    name: CATEGORY_DETAILS["day-du"].name,
+    description: CATEGORY_DETAILS["day-du"].description,
+    image: CATEGORY_DETAILS["day-du"].image,
+    features: CATEGORY_DETAILS["day-du"].features.slice(0, 3),
+    href: "/products?category=day-du",
   },
   {
-    id: 'eband',
-    name: 'Dây đai thun Eband',
-    description: 'Dây đai thun bản dẹp cho quai balo, túi xách, thun lưng. Độ đàn hồi cao, bền chắc.',
-    image: PRODUCT_CATEGORY_IMAGES.eband.featured,
-    features: ['Độ đàn hồi cao', 'Bền chắc', 'Đặt theo độ rộng'],
-    href: '/products?category=eband'
+    id: "day-du-thun",
+    name: CATEGORY_DETAILS["day-du-thun"].name,
+    description: CATEGORY_DETAILS["day-du-thun"].description,
+    image: CATEGORY_DETAILS["day-du-thun"].image,
+    features: CATEGORY_DETAILS["day-du-thun"].features.slice(0, 3),
+    href: "/products?category=day-du-thun",
   },
   {
-    id: 'service',
-    name: 'Dịch vụ gia công',
-    description: 'Chế biến, cắt, nối, bấm đầu, đóng gói. Tư vấn thiết kế mẫu và lên đơn nhanh.',
-    image: PRODUCT_CATEGORY_IMAGES.service.featured,
-    features: ['Tư vấn thiết kế', 'Gia công nhanh', 'Đóng gói chuyên nghiệp'],
-    href: '/contact'
-  }
+    id: "day-tip",
+    name: CATEGORY_DETAILS["day-tip"].name,
+    description: CATEGORY_DETAILS["day-tip"].description,
+    image: CATEGORY_DETAILS["day-tip"].image,
+    features: CATEGORY_DETAILS["day-tip"].features.slice(0, 3),
+    href: "/products?category=day-tip",
+  },
+  {
+    id: "day-thun",
+    name: CATEGORY_DETAILS["day-thun"].name,
+    description: CATEGORY_DETAILS["day-thun"].description,
+    image: CATEGORY_DETAILS["day-thun"].image,
+    features: CATEGORY_DETAILS["day-thun"].features.slice(0, 3),
+    href: "/products?category=day-thun",
+  },
+  {
+    id: "day-dai",
+    name: CATEGORY_DETAILS["day-dai"].name,
+    description: CATEGORY_DETAILS["day-dai"].description,
+    image: CATEGORY_DETAILS["day-dai"].image,
+    features: CATEGORY_DETAILS["day-dai"].features.slice(0, 3),
+    href: "/products?category=day-dai",
+  },
+  {
+    id: "day-chu",
+    name: CATEGORY_DETAILS["day-chu"].name,
+    description: CATEGORY_DETAILS["day-chu"].description,
+    image: CATEGORY_DETAILS["day-chu"].image,
+    features: CATEGORY_DETAILS["day-chu"].features.slice(0, 3),
+    href: "/products?category=day-chu",
+  },
 ];
 
 export function QuickCategories() {
@@ -54,20 +79,20 @@ export function QuickCategories() {
           </p>
         </div>
 
-        {/* Compact Categories Grid */}
+        {/* Categories Grid - 3 columns on large screen */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category, index) => (
             <div 
               key={category.id}
               className="group relative bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fade-in-up card-interactive"
-              style={{ animationDelay: `${index * 0.2}s`, animationFillMode: 'both' }}
+              style={{ animationDelay: `${index * 0.15}s`, animationFillMode: 'both' }}
             >
               {/* Floating badge */}
               <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-slate-700 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                 #{index + 1}
               </div>
               
-              {/* Compact Category Image */}
+              {/* Category Image */}
               <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-50 to-accent-50/30">
                 <Image
                   src={category.image}
@@ -83,7 +108,7 @@ export function QuickCategories() {
                 </div>
               </div>
 
-              {/* Compact Category Content */}
+              {/* Category Content */}
               <div className="p-6 relative">
                 <h3 className="text-lg font-bold text-primary-900 mb-3 group-hover:text-accent-700 transition-colors duration-300">
                   {category.name}
@@ -93,7 +118,7 @@ export function QuickCategories() {
                   {category.description}
                 </p>
 
-                {/* Compact Features */}
+                {/* Features */}
                 <ul className="space-y-2 mb-6">
                   {category.features.map((feature, featureIndex) => (
                     <li 
@@ -109,7 +134,7 @@ export function QuickCategories() {
                   ))}
                 </ul>
 
-                {/* Compact CTA Button */}
+                {/* CTA Button */}
                 <Link
                   href={category.href}
                   className="group/btn inline-flex items-center gap-2 bg-accent-700 text-white px-5 py-2.5 rounded-xl font-medium text-sm hover:bg-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 relative overflow-hidden"
@@ -123,7 +148,7 @@ export function QuickCategories() {
           ))}
         </div>
 
-        {/* Compact Bottom CTA */}
+        {/* Bottom CTA */}
         <div className="text-center mt-12 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'both' }}>
           <div className="max-w-lg mx-auto">
             <div className="bg-gradient-to-r from-white to-accent-50/50 rounded-2xl border border-slate-200/50 p-6 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm">
