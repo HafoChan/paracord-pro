@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Play, X, CheckCircle } from "lucide-react";
 
 interface VideoWithContentProps {
@@ -29,10 +30,11 @@ export function VideoWithContent({
       <div className="relative rounded-2xl overflow-hidden shadow-2xl">
         {!isPlaying ? (
           <div className="relative aspect-video bg-slate-900">
-            <img
+            <Image
               src={thumbnailUrl}
               alt={title}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>

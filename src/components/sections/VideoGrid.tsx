@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Play, X } from "lucide-react";
 
 interface VideoItem {
@@ -62,10 +63,11 @@ export function VideoGrid({
                 <div className="relative aspect-video bg-slate-900">
                   {!isActive ? (
                     <>
-                      <img
+                      <Image
                         src={thumbnailUrl}
                         alt={video.title}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>

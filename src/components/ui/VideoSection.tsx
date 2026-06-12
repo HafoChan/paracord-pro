@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Play, X, Volume2, VolumeX } from "lucide-react";
 
 interface VideoSectionProps {
@@ -19,7 +20,7 @@ export function VideoSection({
   description,
   variant = "default",
   className = "",
-  autoplay = false,
+  autoplay: _autoplay = false, // eslint-disable-line @typescript-eslint/no-unused-vars
   showStats = true
 }: VideoSectionProps) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -102,10 +103,11 @@ export function VideoSection({
             {!isPlaying ? (
               <>
                 <div className="relative aspect-video bg-slate-900">
-                  <img
+                  <Image
                     src={thumbnailUrl}
                     alt={title || "Video"}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>

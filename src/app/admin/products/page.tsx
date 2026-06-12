@@ -168,6 +168,7 @@ export default function AdminProductsPage() {
                     <td className="px-5 py-3.5">
                       <div className="flex items-center gap-3">
                         {product.images?.[0] ? (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={product.images[0]}
                             alt={product.name}

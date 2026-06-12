@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Play, X, ArrowDown } from "lucide-react";
 
 interface VideoHeroSectionProps {
@@ -25,10 +26,12 @@ export function VideoHeroSection({
     <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background Video Thumbnail */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src={thumbnailUrl}
           alt={title}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
       </div>

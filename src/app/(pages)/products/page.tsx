@@ -22,6 +22,7 @@ function ProductsContent() {
     if (categoryFromUrl && categoryFromUrl !== activeCategory) {
       setActiveCategory(categoryFromUrl);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryFromUrl]);
 
   // Fetch products from Supabase

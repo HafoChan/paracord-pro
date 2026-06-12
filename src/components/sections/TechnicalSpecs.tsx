@@ -1,7 +1,5 @@
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import { 
-  SparklesIcon as SparklesIconSolid,
-  FireIcon,
   BeakerIcon,
   ChartBarIcon
 } from "@heroicons/react/24/solid";
